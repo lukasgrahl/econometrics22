@@ -2,7 +2,7 @@
 clear mata
 capture log close
 clear
-cd "C:\Users\LukasGrahl\Documents\GIT\2022_econometrics"
+cd "C:\Users\LukasGrahl\Documents\GIT\econometrics22"
 log using "log\layoff_discr_4_fe.log", replace tex
 
 use "data\layoff_discr\cps_main_prepro.dta", clear
@@ -16,31 +16,19 @@ Assumption check
 
 *corr matrix
 correlate /// 
-gender is_poc is_asian is_hisp is_native /// variables of interest
-age age2 level_educ hh_income is_more1job no_child contract_type ///control variables
+gender is_poc is_asian is_hisp is_native ///
+age age2 new_deathpm new_casespm ///
+is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind
+
+* new_casespm ~ new_deathpm corr .6
+* hh_income ~ level_educ corr .35
+* marista ~ age corr .35
+* age ~ age2 corr .98
+* is_uscitiz * is_asian .38
+
 
 * check number of clusters
 tabulate us_state naic_2dig
-// even on naic 2 digit level there is no sufficient clusters
-
-
-*VARIABLES 
-
-* other - non included variables
-global OVars "marista is_more1job new_death housing_kind pnew_death hh_weight hh_no_people dur_layoff tot_cases owns_business hsp_race birtcountr  mo_birtcountr fa_birtcoutr prob_cases zip_code imig_year"
-
-* control variables X
-global XVars age age2 level_educ contract_type" // is_vet hh_income is_uscitiz"
-
-* variables of interest
-global IVArs "race gender no_child new_casespm is_poc is_hisp is_asian is_native" // no_child telewworkable_wage"
-
-* fixed effect varibles
-// "us_state naic_id" //hh_id 
-
-* dependent variable
-// "is_layoff"
-
 
 /*##########################################
 Fixed Effect Model by month
@@ -48,15 +36,13 @@ Fixed Effect Model by month
 * select month
 keep if hrmonth==5
 
-*set fixed effects
 reghdfe ///
-is_layoff /// dependent var
-gender is_poc is_asian is_hisp is_native /// variables of interest
-age age2 level_educ hh_income is_more1job no_child contract_type 		owns_business teleworkable_wage teleworkable_emp ///control variables
-//// interaction terms
-[fweight=hh_weight] /// weigt variable
-,absorb(us_state) /// fixed effects
-cluster(new_casespm new_deathpm) /// cluster
+is_layoff ///
+gender is_poc is_asian is_hisp is_native ///
+age age2 new_deathpm new_casespm ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
+[fweight=hh_weight] ///
+,absorb(us_state naic_id) ///
 
 
 /*##########################################
@@ -69,32 +55,33 @@ sort hh_id
 quietly by hh_id:  gen dup = cond(_N==1,0,_n)
 keep if dup<=1
 
+
+
 *set fixed effects reg
+reghdfe ///
+is_layoff ///
+gender is_poc is_asian is_hisp is_native ///
+age age2 new_deathpm new_casespm ///
+i.(hrmonth is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
+[fweight=hh_weight] ///
+,absorb(us_state naic_id) ///
+
 
 reghdfe ///
-is_layoff /// dependent var
-gender is_poc is_asian is_hisp is_native /// variables of interest
-age age2 level_educ hh_income is_more1job no_child contract_type owns_business teleworkable_wage teleworkable_emp ///control variables
-i.hrmonth#us_state //// interaction terms
-[fweight=hh_weight] /// weigt variable
-,absorb(us_state) /// fixed effects
-cluster(new_casespm new_deathpm) /// cluster
+is_layoff ///
+gender is_poc is_asian is_hisp is_native ///
+age age2 new_deathpm new_casespm ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child is_vet) ///
+i.(us_state#hrmonth) ///
+[fweight=hh_weight] ///
+,absorb(naic_id) ///
 
-
-/*##########################################
-Var exclusion - explained
-############################################*/
-* no_child has large number of missig values, thus not very informative
-* is_vet is not significant across any model
 
 /*##########################################
 Further ideas
 ############################################*/
 * include avg. seasonal unemployment by state to reflect ususal economic fluction
 * this would strengthen the correction for cyclical unemployment - to this point only based on exclusion of non-recent unemployment
-
-* naic us_state clusters: can we impute clusters, as only very few are missing
-
-
+* two fixed effects 'absorb(state naic)', hrmonth as categorical or	absorb(naic) i.us_state#hrmonth
 
 

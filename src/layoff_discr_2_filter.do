@@ -2,7 +2,7 @@
 clear mata
 capture log close
 clear
-cd "..\2022_econometrics"
+cd "C:\Users\LukasGrahl\Documents\GIT\econometrics22"
 log using "log\layoff_discr_2_filter.log", replace tex
 
 
@@ -53,7 +53,7 @@ replace is_layoff=0 if is_layoff==.
 bysort hrmonth: tab is_layoff
 restore
 
-* check for duplicates
+* check for duplicates: month#hh_id - DUP ACROSS MONTH NOT ACCOUNTED FOR
 sort hrhhid hrmonth
 quietly by hrhhid hrmonth:  gen dup = cond(_N==1,0,_n)
 tab dup

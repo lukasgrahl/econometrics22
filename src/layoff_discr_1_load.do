@@ -2,7 +2,7 @@
 clear mata
 capture log close
 clear
-cd "..\2022_econometrics"
+cd "C:\Users\LukasGrahl\Documents\GIT\econometrics22"
 log using "log\layoff_discr_1_load.log", replace tex
 
 *data source: https://data.nber.org/cps-basic2/dta/

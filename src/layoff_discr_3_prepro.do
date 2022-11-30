@@ -2,7 +2,7 @@
 clear mata
 capture log close
 clear
-cd "..\2022_econometrics"
+cd "C:\Users\LukasGrahl\Documents\GIT\econometrics22"
 log using "log\layoff_discr_3_prepro.log", replace tex
 
 * load data
@@ -13,7 +13,6 @@ use "data\layoff_discr\cps_main_filter.dta", clear
 replace is_layoff=0 if is_layoff==.
 bysort race: tab is_layoff
 tab race
-
 save "data\layoff_discr\cps_main_prepro.dta", replace
 
 /*##########################
@@ -23,7 +22,7 @@ Tele work index by naic
 * load and rename telework index data
 import delimited "data\layoff_discr\raw\naic_telework_index_map", clear
 
-* reducing telewor data to naic 2 digits, which represent broader categories 
+* reducing telework data to naic 2 digits, which represent broader categories 
 * this allows us to cluster later on on us_stata#naic_2dig, as otherwise to few clusters
 tostring naic_id, gen(_naic)
 replace _naic=substr(_naic ,1,1)+substr(_naic ,1,1)
@@ -47,13 +46,8 @@ sort job_ind_naics
 merge m:1 job_ind_naics using "data\layoff_discr\naic_tel.dta", generate(gh)
 replace	job_ind_naics=. if job_ind_naics==-1
 
-* 81 missing values for naic_ids
-gen _tmp=1 if job_ind_naics==.
-tab _tmp
-drop _tmp
-
-tab us_state naic_2dig, row nofreq
-
+* dropping 77 missing naics
+drop if job_ind_naics==.
 save "data\layoff_discr\cps_main_prepro.dta", replace
 
 * merge covid data
@@ -66,7 +60,7 @@ import delimited "data\layoff_discr\raw\usa_population.csv", varnames(1) groupse
 rename state_abrv us_state_str
 drop state
 sort us_state_str
-save "usa_population_edit.dta", replace
+save "data\layoff_discr\raw\usa_population_edit.dta", replace
 
 *get covid data
 import delimited "data\layoff_discr\raw\usa_covid_cases_out.csv", clear
@@ -77,7 +71,7 @@ keep if month==3 | month==4 | month==5 //| month==6 //| month==7
 
 *merge population data
 sort us_state_str
-merge m:1 us_state_str using usa_population_edit, generate(ght)
+merge m:1 us_state_str using "data\layoff_discr\raw\usa_population_edit", generate(ght)
 
 * get covid per 100.000 inhabitants
 gen tot_casesp=tot_cases/(population/100000)
@@ -101,6 +95,7 @@ decode us_state, gen(us_state_str)
 
 sort us_state_str hrmonth
 merge m:1 us_state_str hrmonth using "data\layoff_discr\usa_covid"
+
 
 /*##############################
 edit varialbles
@@ -138,11 +133,19 @@ replace _race="asian" if is_asian==1
 replace _race="hisp" if is_hisp==1
 encode _race, gen(race_cat)
 
+* fill nans
+replace is_more1job=2 if is_more1job==-1
+replace owns_business=. if owns_business==-1 | owns_business==-2 | owns_business==-3
+replace is_vet=2 if is_vet==-1
+
 
 * time state cluster var
 tostring hrmonth, gen(hrmonth_str)
 gen _monthstate=hrmonth_str+us_state_str
 encode _monthstate, gen(month_state)
+
+// drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contract_type==. & owns_business==.
+
 
 save "data\layoff_discr\cps_main_prepro.dta", replace
 
