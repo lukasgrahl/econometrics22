@@ -40,7 +40,7 @@ keep if hrmonth==5
 reghdfe ///
 is_layoff ///
 gender is_poc is_asian is_hisp is_native ///
-age age2 ///
+age age2 ///cd cd 
 i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
 [fweight=hh_weight] ///
 ,absorb(us_state naic_id) ///
@@ -82,7 +82,7 @@ cluster(us_state#naic_id)
 reghdfe ///
 is_layoff ///
 gender is_poc is_asian is_hisp is_native ///
-age age2 new_deathpm new_casespm ///
+age age2 ///
 i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
 ,absorb(us_state#hrmonth naic_id) ///
 cluster(hrmonth#naic_id)
@@ -93,7 +93,7 @@ cluster(hrmonth#naic_id)
 reghdfe ///
 is_layoff ///
 gender is_poc is_asian is_hisp is_native ///
-age age2 new_deathpm new_casespm ///
+age age2 ///
 i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
 ,absorb(us_state#hrmonth naic_id) ///
 cluster(hrmonth#naic_id us_state#hrmonth)

@@ -1,0 +1,271 @@
+---------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_2_
+> filter.log
+  log type:  text
+ opened on:  30 Nov 2022, 20:30:38
+
+. 
+. 
+. * load data
+. use "data\layoff_discr\cps_main_load.dta"
+
+. 
+. keep if hrmonth==3 | hrmonth==4 | hrmonth==5 //| hrmonth==6
+(524,860 observations deleted)
+
+. 
+. * filter for all in labour force
+. count if pemlr==-1 // there are 177,092 casses of -1 - nan
+  137,335
+
+. drop if pemlr==-1 | pemlr==7 | pemlr==6 |pemlr==5
+(240,572 observations deleted)
+
+. 
+. *generate layoff flag - all individuals that were not working - also those abse
+> nt
+. gen is_layoff=1 if pemlr!=1
+(124,665 missing values generated)
+
+. 
+. * get unemployement stats - check they allign with reality
+. preserve
+
+. replace is_layoff=0 if is_layoff==.
+(124,665 real changes made)
+
+. bysort hrmonth: tab is_layoff
+
+---------------------------------------------------------------------------------
+-> hrmonth = 3
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     47,434       91.64       91.64
+          1 |      4,326        8.36      100.00
+------------+-----------------------------------
+      Total |     51,760      100.00
+
+---------------------------------------------------------------------------------
+-> hrmonth = 4
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     38,284       79.32       79.32
+          1 |      9,981       20.68      100.00
+------------+-----------------------------------
+      Total |     48,265      100.00
+
+---------------------------------------------------------------------------------
+-> hrmonth = 5
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     38,947       83.01       83.01
+          1 |      7,973       16.99      100.00
+------------+-----------------------------------
+      Total |     46,920      100.00
+
+
+. restore
+
+. 
+. * duration of unempl - time to 01.01.20
+. gen weekmonth=(hrmonth-2)*4.5 // * 4.5 weeks per month ~ avg.
+
+. replace pelaydur=0 if pelaydur==-1
+(136,896 real changes made)
+
+. replace pelkdur=0 if pelkdur==-1
+(142,668 real changes made)
+
+. gen dur_layoff=pelkdur + pelaydur
+
+. 
+. * get is_recent_layoff - boolean for recent unemployement
+. replace dur_layoff=. if dur_layoff==0
+(132,634 real changes made, 132,634 to missing)
+
+. gen is_relayoff=1 if dur_layoff<=weekmonth
+(135,318 missing values generated)
+
+. 
+. * select only recent layoffs
+. drop if is_layoff==1 & is_relayoff==.
+(10,653 observations deleted)
+
+. 
+. * sanity check - all lay-offs are also recent lay-offs
+. count if is_layoff!=is_relayoff
+  0
+
+. drop is_relayoff
+
+. 
+. * exclude all army members
+. keep if peafnow==2
+(0 observations deleted)
+
+. 
+. * sanity check - do recent lay-off increaes with month - they do
+. *##########################
+. *?? as we have excluded all duplicates this is incremental unemployement 
+. *##########################
+. preserve
+
+. replace is_layoff=0 if is_layoff==.
+(124,665 real changes made)
+
+. bysort hrmonth: tab is_layoff
+
+---------------------------------------------------------------------------------
+-> hrmonth = 3
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     47,434       98.12       98.12
+          1 |        909        1.88      100.00
+------------+-----------------------------------
+      Total |     48,343      100.00
+
+---------------------------------------------------------------------------------
+-> hrmonth = 4
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     38,284       86.86       86.86
+          1 |      5,790       13.14      100.00
+------------+-----------------------------------
+      Total |     44,074      100.00
+
+---------------------------------------------------------------------------------
+-> hrmonth = 5
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     38,947       88.77       88.77
+          1 |      4,928       11.23      100.00
+------------+-----------------------------------
+      Total |     43,875      100.00
+
+
+. restore
+
+. 
+. * check for duplicates: month#hh_id - DUP ACROSS MONTH NOT ACCOUNTED FOR
+. sort hrhhid hrmonth
+
+. quietly by hrhhid hrmonth:  gen dup = cond(_N==1,0,_n)
+
+. tab dup
+
+        dup |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     42,523       31.20       31.20
+          1 |     41,065       30.13       61.33
+          2 |     41,065       30.13       91.46
+          3 |      8,589        6.30       97.76
+          4 |      2,347        1.72       99.48
+          5 |        524        0.38       99.87
+          6 |        139        0.10       99.97
+          7 |         29        0.02       99.99
+          8 |          7        0.01      100.00
+          9 |          3        0.00      100.00
+         10 |          1        0.00      100.00
+------------+-----------------------------------
+      Total |    136,292      100.00
+
+. keep if dup<=1
+(52,704 observations deleted)
+
+. 
+. * rename variables
+. rename hrhhid hh_id
+
+. rename ptdtrace race
+
+. rename prdthsp hsp_race
+
+. rename penatvty birtcountr
+
+. rename pemntvty mo_birtcountr
+
+. rename pefntvty fa_birtcountrr
+
+. rename prcitshp is_uscitiz
+
+. rename prinusyr imig_year
+
+. // rename prdtind1 job_industry
+. // rename peio1ocd job_ind_naics
+. rename peio1icd job_ind_naics
+
+. rename prftlf contract_type
+
+. rename prtage age
+
+. rename pesex gender
+
+. rename prnmchld no_child
+
+. rename hehousut housing_kind
+
+. rename hetenur housing_own
+
+. rename hefaminc hh_income // caution has 20% allocation rate
+
+. rename hrnumhou hh_no_people // consider also number of members alongside incom
+> e
+
+. rename peeduca level_educ
+
+. rename hwhhwgt hh_weight // consider weighing households, for more accuarate sa
+> mple
+
+. rename hubus owns_business
+
+. rename gestfips us_state
+
+. rename gtcbsa zip_code // use to merge population numbers       
+
+. rename gtco zip_code2 // check with zip1 - merge with us_state to obtain actual
+>  zip
+
+. rename gtcbsast population_dens // major city, balanced, non-metro - pop densit
+> y
+
+. rename pemaritl marista // marital status
+
+. rename peafever is_vet // is veteran
+
+. rename peafnow is_army // is active military service
+
+. rename pemjot is_more1job
+
+. 
+. 
+. global X "hh_id race hrmonth dur_layoff job_ind_naics is_layoff hsp_race birtco
+> untr mo_birtcountr fa_birtcountrr is_uscitiz imig_year contract_type age gender
+>  no_child housing_kind housing_own hh_income hh_no_people level_educ hh_weight 
+> owns_business us_state zip_code zip_code2 population_dens marista is_vet is_arm
+> y is_more1job population_dens"
+
+. 
+. keep $X
+
+. 
+. save "data\layoff_discr\cps_main_filter.dta", replace
+file data\layoff_discr\cps_main_filter.dta saved
+
+. 
+. 
+. 
+end of do-file
+
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD91c4_000000.tmp"
+
+. *Preamble
+. clear mata
+
+. capture log close
