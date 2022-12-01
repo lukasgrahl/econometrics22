@@ -1,9 +1,8 @@
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_3_
-> prepro.log
+       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_3_prepro.log
   log type:  text
- opened on:  30 Nov 2022, 21:25:05
+ opened on:   1 Dec 2022, 16:22:50
 
 . 
 . * load data
@@ -13,122 +12,131 @@
 . 
 . * analyse unemployement by race
 . replace is_layoff=0 if is_layoff==.
-(76,659 real changes made)
+(76,642 real changes made)
 
 . bysort race: tab is_layoff
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = White Only
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |     62,897       92.19       92.19
-          1 |      5,332        7.81      100.00
+          0 |     62,892       92.15       92.15
+          1 |      5,359        7.85      100.00
 ------------+-----------------------------------
-      Total |     68,229      100.00
+      Total |     68,251      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Black Only
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      7,401       89.60       89.60
-          1 |        859       10.40      100.00
+          0 |      7,373       89.64       89.64
+          1 |        852       10.36      100.00
 ------------+-----------------------------------
-      Total |      8,260      100.00
+      Total |      8,225      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = American Indian, Alaskan Native Only
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |        771       87.12       87.12
-          1 |        114       12.88      100.00
+          0 |        762       86.49       86.49
+          1 |        119       13.51      100.00
 ------------+-----------------------------------
-      Total |        885      100.00
+      Total |        881      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Asian Only
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      4,144       90.42       90.42
-          1 |        439        9.58      100.00
+          0 |      4,126       90.52       90.52
+          1 |        432        9.48      100.00
 ------------+-----------------------------------
-      Total |      4,583      100.00
+      Total |      4,558      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Hawaiian/Pacific Islander Only
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |        282       91.86       91.86
-          1 |         25        8.14      100.00
+          0 |        297       91.67       91.67
+          1 |         27        8.33      100.00
 ------------+-----------------------------------
-      Total |        307      100.00
+      Total |        324      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = White-Black
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |        319       84.84       84.84
-          1 |         57       15.16      100.00
+          0 |        318       83.91       83.91
+          1 |         61       16.09      100.00
 ------------+-----------------------------------
-      Total |        376      100.00
+      Total |        379      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = White-AI
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |        359       91.12       91.12
-          1 |         35        8.88      100.00
+          0 |        369       91.34       91.34
+          1 |         35        8.66      100.00
 ------------+-----------------------------------
-      Total |        394      100.00
+      Total |        404      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = White-Asian
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |        237       86.50       86.50
-          1 |         37       13.50      100.00
+          0 |        252       87.20       87.20
+          1 |         37       12.80      100.00
 ------------+-----------------------------------
-      Total |        274      100.00
+      Total |        289      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = White-HP
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |         64       91.43       91.43
-          1 |          6        8.57      100.00
+          0 |         65       94.20       94.20
+          1 |          4        5.80      100.00
 ------------+-----------------------------------
-      Total |         70      100.00
+      Total |         69      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Black-AI
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |         55       78.57       78.57
-          1 |         15       21.43      100.00
+          0 |         50       79.37       79.37
+          1 |         13       20.63      100.00
 ------------+-----------------------------------
-      Total |         70      100.00
+      Total |         63      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Black-Asian
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |         23       92.00       92.00
-          1 |          2        8.00      100.00
+          0 |         22       91.67       91.67
+          1 |          2        8.33      100.00
 ------------+-----------------------------------
-      Total |         25      100.00
+      Total |         24      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Black-HP
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |          5      100.00      100.00
+------------+-----------------------------------
+      Total |          5      100.00
+
+------------------------------------------------------------------------------------------------------------------------------------------
+-> race = AI-Asian
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
@@ -136,17 +144,7 @@
 ------------+-----------------------------------
       Total |          3      100.00
 
----------------------------------------------------------------------------------
--> race = AI-Asian
-
-  is_layoff |      Freq.     Percent        Cum.
-------------+-----------------------------------
-          0 |          5       83.33       83.33
-          1 |          1       16.67      100.00
-------------+-----------------------------------
-      Total |          6      100.00
-
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = AI-HP
 
   is_layoff |      Freq.     Percent        Cum.
@@ -155,17 +153,17 @@
 ------------+-----------------------------------
       Total |          1      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Asian-HP
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |         23       88.46       88.46
-          1 |          3       11.54      100.00
+          0 |         31       93.94       93.94
+          1 |          2        6.06      100.00
 ------------+-----------------------------------
-      Total |         26      100.00
+      Total |         33      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = W-B-AI
 
   is_layoff |      Freq.     Percent        Cum.
@@ -174,18 +172,17 @@
 ------------+-----------------------------------
       Total |         22      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = W-B-A
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |          9       90.00       90.00
-          1 |          1       10.00      100.00
+          0 |          7      100.00      100.00
 ------------+-----------------------------------
-      Total |         10      100.00
+      Total |          7      100.00
 
----------------------------------------------------------------------------------
--> race = W-AI-A
+------------------------------------------------------------------------------------------------------------------------------------------
+-> race = W-B-HP
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
@@ -193,7 +190,16 @@
 ------------+-----------------------------------
       Total |          1      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+-> race = W-AI-A
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |          3      100.00      100.00
+------------+-----------------------------------
+      Total |          3      100.00
+
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = W-AI-HP
 
   is_layoff |      Freq.     Percent        Cum.
@@ -202,26 +208,35 @@
 ------------+-----------------------------------
       Total |          2      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = W-A-HP
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |         34       91.89       91.89
-          1 |          3        8.11      100.00
+          0 |         32       91.43       91.43
+          1 |          3        8.57      100.00
 ------------+-----------------------------------
-      Total |         37      100.00
+      Total |         35      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+-> race = W-B-AI-A
+
+  is_layoff |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |          1      100.00      100.00
+------------+-----------------------------------
+      Total |          1      100.00
+
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Other 3 Race Combinations
 
   is_layoff |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |          2      100.00      100.00
+          0 |          3      100.00      100.00
 ------------+-----------------------------------
-      Total |          2      100.00
+      Total |          3      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> race = Other 4 and 5 Race Combinations
 
   is_layoff |      Freq.     Percent        Cum.
@@ -235,27 +250,29 @@
 
                                 race |      Freq.     Percent        Cum.
 -------------------------------------+-----------------------------------
-                          White Only |     68,229       81.63       81.63
-                          Black Only |      8,260        9.88       91.51
-American Indian, Alaskan Native Only |        885        1.06       92.57
-                          Asian Only |      4,583        5.48       98.05
-      Hawaiian/Pacific Islander Only |        307        0.37       98.42
-                         White-Black |        376        0.45       98.87
-                            White-AI |        394        0.47       99.34
-                         White-Asian |        274        0.33       99.67
-                            White-HP |         70        0.08       99.75
-                            Black-AI |         70        0.08       99.83
-                         Black-Asian |         25        0.03       99.86
-                            Black-HP |          3        0.00       99.87
-                            AI-Asian |          6        0.01       99.87
+                          White Only |     68,251       81.65       81.65
+                          Black Only |      8,225        9.84       91.49
+American Indian, Alaskan Native Only |        881        1.05       92.55
+                          Asian Only |      4,558        5.45       98.00
+      Hawaiian/Pacific Islander Only |        324        0.39       98.39
+                         White-Black |        379        0.45       98.84
+                            White-AI |        404        0.48       99.32
+                         White-Asian |        289        0.35       99.67
+                            White-HP |         69        0.08       99.75
+                            Black-AI |         63        0.08       99.83
+                         Black-Asian |         24        0.03       99.86
+                            Black-HP |          5        0.01       99.86
+                            AI-Asian |          3        0.00       99.86
                                AI-HP |          1        0.00       99.87
-                            Asian-HP |         26        0.03       99.91
+                            Asian-HP |         33        0.04       99.91
                               W-B-AI |         22        0.03       99.93
-                               W-B-A |         10        0.01       99.94
-                              W-AI-A |          1        0.00       99.94
+                               W-B-A |          7        0.01       99.94
+                              W-B-HP |          1        0.00       99.94
+                              W-AI-A |          3        0.00       99.94
                              W-AI-HP |          2        0.00       99.95
-                              W-A-HP |         37        0.04       99.99
-           Other 3 Race Combinations |          2        0.00       99.99
+                              W-A-HP |         35        0.04       99.99
+                            W-B-AI-A |          1        0.00       99.99
+           Other 3 Race Combinations |          3        0.00       99.99
      Other 4 and 5 Race Combinations |          5        0.01      100.00
 -------------------------------------+-----------------------------------
                                Total |     83,588      100.00
@@ -275,8 +292,7 @@ file data\layoff_discr\cps_main_prepro.dta saved
 
 . 
 . * reducing telework data to naic 2 digits, which represent broader categories 
-. * this allows us to cluster later on on us_stata#naic_2dig, as otherwise to few
->  clusters
+. * this allows us to cluster later on on us_stata#naic_2dig, as otherwise to few clusters
 . tostring naic_id, gen(_naic)
 _naic generated as str3
 
@@ -305,8 +321,7 @@ file data\layoff_discr\naic_tel.dta saved
 > ############################*/
 . 
 . * merge telework index on main data - 54 missing values due to job_ind_naics
-. * data link: https://github.com/jdingel/DingelNeiman-workathome/blob/master/nat
-> ional_measures/output/NAICS3_workfromhome.csv
+. * data link: https://github.com/jdingel/DingelNeiman-workathome/blob/master/national_measures/output/NAICS3_workfromhome.csv
 . use "data\layoff_discr\cps_main_prepro.dta", clear
 
 . sort job_ind_naics
@@ -315,35 +330,32 @@ file data\layoff_discr\naic_tel.dta saved
 
     Result                      Number of obs
     -----------------------------------------
-    Not matched                            71
-        from master                        71  (gh==1)
+    Not matched                            70
+        from master                        70  (gh==1)
         from using                          0  (gh==2)
 
-    Matched                            83,517  (gh==3)
+    Matched                            83,518  (gh==3)
     -----------------------------------------
 
 . replace job_ind_naics=. if job_ind_naics==-1
-(71 real changes made, 71 to missing)
+(70 real changes made, 70 to missing)
 
 . 
 . * dropping 77 missing naics
 . drop if job_ind_naics==.
-(71 observations deleted)
+(70 observations deleted)
 
 . save "data\layoff_discr\cps_main_prepro.dta", replace
 file data\layoff_discr\cps_main_prepro.dta saved
 
 . 
 . * merge covid data
-. * data link: https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Case
-> s-and-Deaths-by-State-o/9mfq-cb36/data
-. * data by zip code: https://catalog.data.gov/dataset/covid-19-cases-tests-and-d
-> eaths-by-zip-code
+. * data link: https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36/data
+. * data by zip code: https://catalog.data.gov/dataset/covid-19-cases-tests-and-deaths-by-zip-code
 . *zip cod is missing for 25% of total data
 . 
 . *get pop data
-. import delimited "data\layoff_discr\raw\usa_population.csv", varnames(1) groups
-> eparator(,) clear
+. import delimited "data\layoff_discr\raw\usa_population.csv", varnames(1) groupseparator(,) clear
 (encoding automatically selected: ISO-8859-1)
 (3 vars, 51 obs)
 
@@ -376,8 +388,7 @@ file data\layoff_discr\raw\usa_population_edit.dta saved
 . *merge population data
 . sort us_state_str
 
-. merge m:1 us_state_str using "data\layoff_discr\raw\usa_population_edit", gener
-> ate(ght)
+. merge m:1 us_state_str using "data\layoff_discr\raw\usa_population_edit", generate(ght)
 
     Result                      Number of obs
     -----------------------------------------
@@ -443,7 +454,7 @@ file data\layoff_discr\usa_covid.dta saved
         from master                         0  (_merge==1)
         from using                         27  (_merge==2)
 
-    Matched                            83,517  (_merge==3)
+    Matched                            83,518  (_merge==3)
     -----------------------------------------
 
 . 
@@ -465,24 +476,24 @@ file data\layoff_discr\usa_covid.dta saved
 . 
 . * is black, is hispanic
 . gen is_native=1 if race==3 | race==5 
-(82,355 missing values generated)
+(82,342 missing values generated)
 
 . replace is_native=0 if is_native==.
-(82,355 real changes made)
+(82,342 real changes made)
 
 . 
 . gen is_poc=1 if race==6 | race==2 | race==10
-(74,850 missing values generated)
+(74,888 missing values generated)
 
 . replace is_poc=0 if is_poc==.
-(74,850 real changes made)
+(74,888 real changes made)
 
 . 
 . gen is_asian=1 if race==4 | race==8 | race==11
-(78,665 missing values generated)
+(78,678 missing values generated)
 
 . replace is_asian=0 if is_asian==.
-(78,665 real changes made)
+(78,678 real changes made)
 
 . 
 . gen is_hisp=1 if race==9 | race==12 | race==14
@@ -493,40 +504,39 @@ file data\layoff_discr\usa_covid.dta saved
 
 . 
 . gen is_white=1 if is_native==0 & is_poc==0 & is_asian==0 & is_hisp==0
-(14,836 missing values generated)
+(14,802 missing values generated)
 
 . replace is_white=0 if is_white==.
-(14,836 real changes made)
+(14,802 real changes made)
 
 . 
 . gen _race="white"
 
 . replace _race="native" if is_native==1
 variable _race was str5 now str6
-(1,189 real changes made)
+(1,203 real changes made)
 
 . replace _race="poc" if is_poc==1
-(8,694 real changes made)
+(8,657 real changes made)
 
 . replace _race="asian" if is_asian==1
-(4,879 real changes made)
+(4,867 real changes made)
 
 . replace _race="hisp" if is_hisp==1
-(74 real changes made)
+(75 real changes made)
 
 . encode _race, gen(race_cat)
 
 . 
 . * fill nans
 . replace is_more1job=2 if is_more1job==-1
-(6,858 real changes made)
+(6,876 real changes made)
 
-. replace owns_business=. if owns_business==-1 | owns_business==-2 | owns_busines
-> s==-3
-(232 real changes made, 232 to missing)
+. replace owns_business=. if owns_business==-1 | owns_business==-2 | owns_business==-3
+(230 real changes made, 230 to missing)
 
 . replace is_vet=2 if is_vet==-1
-(280 real changes made)
+(289 real changes made)
 
 . 
 . 
@@ -539,8 +549,7 @@ hrmonth_str generated as str1
 . encode _monthstate, gen(month_state)
 
 . 
-. // drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contra
-> ct_type==. & owns_business==.
+. // drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contract_type==. & owns_business==.
 . 
 . 
 . save "data\layoff_discr\cps_main_prepro.dta", replace
@@ -551,8 +560,6 @@ file data\layoff_discr\cps_main_prepro.dta saved
 .   
 . 
 end of do-file
-
-. 
 
 . do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_4_fe.do"
 

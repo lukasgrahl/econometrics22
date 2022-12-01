@@ -2,7 +2,8 @@
 clear mata
 capture log close
 clear
-cd "..\2022_econometrics"
+
+cd "C:\Users\LukasGrahl\Documents\GIT\econometrics22"
 log using "log\layoff_discr_5_oxabl.log", replace tex
 
 use "data\layoff_discr\cps_main_prepro.dta", clear

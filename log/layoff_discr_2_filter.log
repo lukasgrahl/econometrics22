@@ -1,9 +1,8 @@
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_2_
-> filter.log
+       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_2_filter.log
   log type:  text
- opened on:  30 Nov 2022, 20:30:38
+ opened on:   1 Dec 2022, 16:22:47
 
 . 
 . 
@@ -23,8 +22,7 @@
 (240,572 observations deleted)
 
 . 
-. *generate layoff flag - all individuals that were not working - also those abse
-> nt
+. *generate layoff flag - all individuals that were not working - also those absent
 . gen is_layoff=1 if pemlr!=1
 (124,665 missing values generated)
 
@@ -37,7 +35,7 @@
 
 . bysort hrmonth: tab is_layoff
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> hrmonth = 3
 
   is_layoff |      Freq.     Percent        Cum.
@@ -47,7 +45,7 @@
 ------------+-----------------------------------
       Total |     51,760      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> hrmonth = 4
 
   is_layoff |      Freq.     Percent        Cum.
@@ -57,7 +55,7 @@
 ------------+-----------------------------------
       Total |     48,265      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> hrmonth = 5
 
   is_layoff |      Freq.     Percent        Cum.
@@ -119,7 +117,7 @@
 
 . bysort hrmonth: tab is_layoff
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> hrmonth = 3
 
   is_layoff |      Freq.     Percent        Cum.
@@ -129,7 +127,7 @@
 ------------+-----------------------------------
       Total |     48,343      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> hrmonth = 4
 
   is_layoff |      Freq.     Percent        Cum.
@@ -139,7 +137,7 @@
 ------------+-----------------------------------
       Total |     44,074      100.00
 
----------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 -> hrmonth = 5
 
   is_layoff |      Freq.     Percent        Cum.
@@ -215,13 +213,11 @@
 
 . rename hefaminc hh_income // caution has 20% allocation rate
 
-. rename hrnumhou hh_no_people // consider also number of members alongside incom
-> e
+. rename hrnumhou hh_no_people // consider also number of members alongside income
 
 . rename peeduca level_educ
 
-. rename hwhhwgt hh_weight // consider weighing households, for more accuarate sa
-> mple
+. rename hwhhwgt hh_weight // consider weighing households, for more accuarate sample
 
 . rename hubus owns_business
 
@@ -229,11 +225,9 @@
 
 . rename gtcbsa zip_code // use to merge population numbers       
 
-. rename gtco zip_code2 // check with zip1 - merge with us_state to obtain actual
->  zip
+. rename gtco zip_code2 // check with zip1 - merge with us_state to obtain actual zip
 
-. rename gtcbsast population_dens // major city, balanced, non-metro - pop densit
-> y
+. rename gtcbsast population_dens // major city, balanced, non-metro - pop density
 
 . rename pemaritl marista // marital status
 
@@ -245,11 +239,9 @@
 
 . 
 . 
-. global X "hh_id race hrmonth dur_layoff job_ind_naics is_layoff hsp_race birtco
-> untr mo_birtcountr fa_birtcountrr is_uscitiz imig_year contract_type age gender
->  no_child housing_kind housing_own hh_income hh_no_people level_educ hh_weight 
-> owns_business us_state zip_code zip_code2 population_dens marista is_vet is_arm
-> y is_more1job population_dens"
+. global X "hh_id race hrmonth dur_layoff job_ind_naics is_layoff hsp_race birtcountr mo_birtcountr fa_birtcountrr is_uscitiz imig_year co
+> ntract_type age gender no_child housing_kind housing_own hh_income hh_no_people level_educ hh_weight owns_business us_state zip_code zip
+> _code2 population_dens marista is_vet is_army is_more1job population_dens"
 
 . 
 . keep $X
@@ -263,7 +255,7 @@ file data\layoff_discr\cps_main_filter.dta saved
 . 
 end of do-file
 
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD91c4_000000.tmp"
+. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_3_prepro.do"
 
 . *Preamble
 . clear mata
