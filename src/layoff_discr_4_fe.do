@@ -36,10 +36,11 @@ Fixed Effect Model by month
 * select month
 keep if hrmonth==5
 
+* analysis each month seperately in a regresion
 reghdfe ///
 is_layoff ///
 gender is_poc is_asian is_hisp is_native ///
-age age2 new_deathpm new_casespm ///
+age age2 ///
 i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
 [fweight=hh_weight] ///
 ,absorb(us_state naic_id) ///
@@ -58,23 +59,44 @@ keep if dup<=1
 
 
 *set fixed effects reg
+
+* third best
 reghdfe ///
 is_layoff ///
 gender is_poc is_asian is_hisp is_native ///
 age age2 new_deathpm new_casespm ///
-i.(hrmonth is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
-[fweight=hh_weight] ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
 ,absorb(us_state naic_id) ///
-
+cluster(hrmonth#naic_id)
 
 reghdfe ///
 is_layoff ///
 gender is_poc is_asian is_hisp is_native ///
 age age2 new_deathpm new_casespm ///
-i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child is_vet) ///
-i.(us_state#hrmonth) ///
-[fweight=hh_weight] ///
-,absorb(naic_id) ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
+,absorb(us_state naic_id) ///
+cluster(us_state#naic_id)
+
+
+* second best
+reghdfe ///
+is_layoff ///
+gender is_poc is_asian is_hisp is_native ///
+age age2 new_deathpm new_casespm ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
+,absorb(us_state#hrmonth naic_id) ///
+cluster(hrmonth#naic_id)
+
+
+* best option
+* There is variation across month and state as well as job, this variation causes herteroskedacity, which we account for by clustering
+reghdfe ///
+is_layoff ///
+gender is_poc is_asian is_hisp is_native ///
+age age2 new_deathpm new_casespm ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
+,absorb(us_state#hrmonth naic_id) ///
+cluster(hrmonth#naic_id us_state#hrmonth)
 
 
 /*##########################################
