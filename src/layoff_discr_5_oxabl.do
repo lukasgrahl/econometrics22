@@ -25,5 +25,6 @@ oaxaca ///
 is_layoff /// dependent
 gender level_educ age age2 hh_income contract_type teleworkable_emp /// independent
 [fweight=hh_weight] /// weights
-,by(is_poc) logit /// group var: white
+,by(is_poc) /// group var: white
+* run it as a twofold
 

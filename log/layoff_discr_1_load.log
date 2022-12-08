@@ -1,8 +1,9 @@
-------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_1_load.log
+       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_1_
+> load.log
   log type:  text
- opened on:   1 Dec 2022, 16:22:30
+ opened on:   8 Dec 2022, 08:22:38
 
 . 
 . *data source: https://data.nber.org/cps-basic2/dta/
@@ -1398,12 +1399,14 @@
 
 . 
 . save "data\layoff_discr\cps_main_load.dta", replace
+(file data\layoff_discr\cps_main_load.dta not found)
 file data\layoff_discr\cps_main_load.dta saved
 
 . 
 end of do-file
 
-. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_2_filter.do"
+. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_2_filter.
+> do"
 
 . *Preamble
 . clear mata

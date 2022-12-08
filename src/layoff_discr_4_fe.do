@@ -98,6 +98,28 @@ i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_ch
 ,absorb(us_state#hrmonth naic_id) ///
 cluster(hrmonth#naic_id us_state#hrmonth)
 
+* robert meeting
+reghdfe ///
+is_layoff ///
+gender is_poc is_asian is_hisp is_native ///
+age age2 ///
+i.(is_uscitiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind) ///
+,absorb(us_state naic_id) ///
+cluster(hrmonth#naic_id us_state#hrmonth)
+
+* explain why two clusters and shortcomings
+* state#month
+* cluster on zip code level
+* discuss why note probit
+
+* run heterogeniety analysis
+// * for i in state{
+// 	local s2
+// 	reg is_layoff 
+// 	controll
+// 	fixed effects industry
+// 	save table
+// } across all three month
 
 /*##########################################
 Further ideas
