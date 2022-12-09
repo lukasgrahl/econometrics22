@@ -1,0 +1,25 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+                    &\multicolumn{1}{c}{is\_layoff}&\multicolumn{1}{c}{is\_layoff}\\
+\hline
+is\_poc              &     0.00777\sym{**} &     0.00752\sym{**} \\
+                    &   (0.00309)         &   (0.00300)         \\
+[1em]
+is\_asian            &     0.00998         &     0.00996\sym{*}  \\
+                    &   (0.00606)         &   (0.00587)         \\
+[1em]
+age                 &    -0.00287\sym{***}&    -0.00281\sym{**} \\
+                    &   (0.00109)         &   (0.00109)         \\
+\hline
+State FE            &         Yes         &         Yes         \\
+Job FE              &          No         &          No         \\
+Observations        &       44961         &       44961         \\
+Mean of Dep. Variable&      0.0828         &      0.0828         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}
