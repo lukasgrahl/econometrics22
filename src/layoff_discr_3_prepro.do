@@ -144,6 +144,21 @@ tostring hrmonth, gen(hrmonth_str)
 gen _monthstate=hrmonth_str+us_state_str
 encode _monthstate, gen(month_state)
 
+
+* binary is_uscitiz
+gen is_citiz=.
+replace is_citiz=0 if is_uscitiz!=5
+replace is_citiz=1 if is_uscitiz==5
+drop is_uscitiz
+
+* use county code
+replace county_code=. if county_code==0
+
+* get binary gender
+gen is_female=0
+replace is_female=1 if gender==2
+
+
 // drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contract_type==. & owns_business==.
 
 

@@ -84,7 +84,8 @@ rename hwhhwgt hh_weight // consider weighing households, for more accuarate sam
 rename hubus owns_business
 rename gestfips us_state
 rename gtcbsa zip_code // use to merge population numbers	
-rename gtco zip_code2 // check with zip1 - merge with us_state to obtain actual zip
+rename gtcsa zip_code1
+rename gtco county_code // check with zip1 - merge with us_state to obtain actual zip
 rename gtcbsast population_dens // major city, balanced, non-metro - pop density
 rename pemaritl marista // marital status
 rename peafever is_vet // is veteran
@@ -92,7 +93,7 @@ rename peafnow is_army // is active military service
 rename pemjot is_more1job
 
 
-global X "hh_id race hrmonth dur_layoff job_ind_naics is_layoff hsp_race birtcountr mo_birtcountr fa_birtcountrr is_uscitiz imig_year contract_type age gender no_child housing_kind housing_own hh_income hh_no_people level_educ hh_weight owns_business us_state zip_code zip_code2 population_dens marista is_vet is_army is_more1job population_dens"
+global X "hh_id race hrmonth dur_layoff job_ind_naics is_layoff hsp_race birtcountr mo_birtcountr fa_birtcountrr is_uscitiz imig_year contract_type age gender no_child housing_kind housing_own hh_income hh_no_people level_educ hh_weight owns_business us_state zip_code zip_code1 county_code population_dens marista is_vet is_army is_more1job population_dens"
 
 keep $X
 

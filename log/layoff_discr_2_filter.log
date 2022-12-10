@@ -3,7 +3,7 @@
        log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_2_
 > filter.log
   log type:  text
- opened on:   8 Dec 2022, 08:22:47
+ opened on:  10 Dec 2022, 11:53:01
 
 . 
 . 
@@ -229,8 +229,10 @@
 
 . rename gtcbsa zip_code // use to merge population numbers       
 
-. rename gtco zip_code2 // check with zip1 - merge with us_state to obtain actual
->  zip
+. rename gtcsa zip_code1
+
+. rename gtco county_code // check with zip1 - merge with us_state to obtain actu
+> al zip
 
 . rename gtcbsast population_dens // major city, balanced, non-metro - pop densit
 > y
@@ -248,15 +250,14 @@
 . global X "hh_id race hrmonth dur_layoff job_ind_naics is_layoff hsp_race birtco
 > untr mo_birtcountr fa_birtcountrr is_uscitiz imig_year contract_type age gender
 >  no_child housing_kind housing_own hh_income hh_no_people level_educ hh_weight 
-> owns_business us_state zip_code zip_code2 population_dens marista is_vet is_arm
-> y is_more1job population_dens"
+> owns_business us_state zip_code zip_code1 county_code population_dens marista i
+> s_vet is_army is_more1job population_dens"
 
 . 
 . keep $X
 
 . 
 . save "data\layoff_discr\cps_main_filter.dta", replace
-(file data\layoff_discr\cps_main_filter.dta not found)
 file data\layoff_discr\cps_main_filter.dta saved
 
 . 
@@ -264,8 +265,7 @@ file data\layoff_discr\cps_main_filter.dta saved
 . 
 end of do-file
 
-. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_3_prepro.
-> do"
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD89cc_000000.tmp"
 
 . *Preamble
 . clear mata
