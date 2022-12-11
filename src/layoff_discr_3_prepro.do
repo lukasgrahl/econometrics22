@@ -158,6 +158,9 @@ replace county_code=. if county_code==0
 gen is_female=0
 replace is_female=1 if gender==2
 
+* percentage weights
+sum hh_weight
+gen hh_weight_perc = hh_weight /r(sum)
 
 // drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contract_type==. & owns_business==.
 
