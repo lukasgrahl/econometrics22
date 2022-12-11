@@ -3,7 +3,7 @@
        log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_3_
 > prepro.log
   log type:  text
- opened on:  10 Dec 2022, 12:41:05
+ opened on:  11 Dec 2022, 13:12:22
 
 . 
 . * load data
@@ -574,16 +574,17 @@ hrmonth_str generated as str1
 . replace is_female=1 if gender==2
 (38,892 real changes made)
 
-. tab is_female
-
-  is_female |      Freq.     Percent        Cum.
-------------+-----------------------------------
-          0 |     44,656       53.45       53.45
-          1 |     38,892       46.55      100.00
-------------+-----------------------------------
-      Total |     83,548      100.00
-
 . 
+. * percentage weights
+. sum hh_weight
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   hh_weight |     83,521    3.16e+07    1.88e+07    1534265   2.50e+08
+
+. gen hh_weight_perc = hh_weight /r(sum)
+(27 missing values generated)
+
 . 
 . // drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contra
 > ct_type==. & owns_business==.
@@ -598,7 +599,7 @@ file data\layoff_discr\cps_main_prepro.dta saved
 . 
 end of do-file
 
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD89cc_000000.tmp"
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD55e4_000000.tmp"
 
 . *Preamble
 . clear mata
