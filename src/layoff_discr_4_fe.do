@@ -45,16 +45,19 @@ keep if dup<=1
 /*##########################################
 Fixed effect models
 ############################################*/
+// i.($ControlCategor) i.hrmonth /// control categorical
 
+* baseline one controll
 * fourth best
 // quietly ///
 reghdfe ///
 $DependVar /// dependent variable
 $InterestVars /// varibels of interest
 $ControlContin /// control continous
-i.($ControlCategor) i.hrmonth /// control categorical
-[pweight=hh_weight_perc] ///
+[pweight=hh_weight_perc] /// analytical weights
 ,absorb(us_state naic_id) ///
+vce(robust)
+
 
 eststo M4
 quietly estadd local feS "Yes", replace
@@ -109,7 +112,7 @@ estadd ysumm, replace
 reghdfe ///
 $DependVar /// dependent variable
 $InterestVars /// varibels of interest
-$ControlContin /// control continous
+$ControlContin /// control continous include covid
 i.($ControlCategor) /// control categorical
 [pweight=hh_weight_perc] ///
 ,absorb(us_state#hrmonth naic_id) ///
@@ -143,6 +146,21 @@ quietly estadd local clPT "Yes", replace
 quietly estadd local clST "No", replace
 estadd ysumm, replace
 
+* robert meeting
+/*
+- no weights for county reg
+- show what weights in table with footnoe
+- only two kinds of clustering max
+- run herteroskedacity on baseline reg
+- run hausmann test for random effects
+- don't exclude covid-cases for all regs
+- try a weights instead of p-weights
+- two groups of control variables, add gradually??
+- show difference in is_layoff across county base data
+*/
+
+
+* max ein zwei clustering arten
 
 * best option
 * There is variation across month and state as well as job, this variation causes herteroskedacity, which we account for by clustering
@@ -182,7 +200,6 @@ $DependVar /// dependent variable
 $InterestVars /// varibels of interest
 $ControlContin new_deathpm new_casespm /// control continous
 i.($ControlCategor) /// control categorical
-[pweight=hh_weight_perc] ///
 ,absorb(county_code#hrmonth naic_id) ///
 cluster(naic_id#hrmonth)
 
