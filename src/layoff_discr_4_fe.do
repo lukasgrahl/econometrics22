@@ -10,12 +10,14 @@ use "data\layoff_discr\cps_main_prepro.dta", clear
 *tab unemployement by race and month
 tabulate race_cat is_layoff, row nofreq chi2
 
+* how to export that table into a nice format ??
+
 /*##########################################
 Assumption check
 ##########################################*/
 
 *corr matrix
-estpost correlate /// 
+correlate /// 
 is_female is_poc is_asian is_hisp is_native ///
 age age2 new_deathpm new_casespm ///
 is_citiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind
@@ -31,9 +33,15 @@ is_citiz level_educ hh_income contract_type owns_business is_more1job no_child m
 Setting variables and data
 ############################################*/
 * global vars
-global ControlCategor "is_citiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind"
+global TimeCat "hrmonth"
 
+global ControlCatEduc "hh_income level_educ"
+global ControlCatFam "no_child marista housing_kind is_citiz"
+global ConntrolCatJob "owns_business contract_type is_more1job"
 global ControlContin "age age2"
+global ControlCovid "new_deathpm new_casespm"
+global ControlProf "teleworkable_wage teleworkable_emp"
+
 global InterestVars "is_female is_poc is_asian is_hisp is_native"
 global DependVar "is_layoff"
 
@@ -43,151 +51,180 @@ quietly by hh_id:  gen dup = cond(_N==1,0,_n)
 keep if dup<=1
 
 /*##########################################
+To Do
+############################################*/
+
+// *Run the Hausman Test
+// hausman FE RE 
+
+// *Run Heteroskedacity test
+// white or breusch pagan
+
+// * robust standard erros and het white test
+
+
+/*##########################################
 Fixed effect models
 ############################################*/
-// i.($ControlCategor) i.hrmonth /// control categorical
 
-* baseline one controll
-* fourth best
-// quietly ///
+* Hausman test: H0 Difference in coefficients not systematic
+xtset us_state
+xtreg $DependVar $InterestVars, fe
+eststo FE
+xtreg $DependVar $InterestVars, re
+eststo RE
+
+hausman FE RE
+* we can reject the H0, differences are systematic
+
+
+*1: BASELINE MODEL
+* State fixed effects, industry not included
+//quietly ///
 reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin /// control continous
-[pweight=hh_weight_perc] /// analytical weights
-,absorb(us_state naic_id) ///
-vce(robust)
-
-
-eststo M4
-quietly estadd local feS "Yes", replace
-quietly estadd local feST "No", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "No", replace
-quietly estadd local clST "No", replace
-estadd ysumm, replace
-
-
-* third best
-// quietly ///
-reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin /// control continous
-i.($ControlCategor) i.hrmonth /// control categorical
-[pweight=hh_weight_perc] ///
-,absorb(us_state naic_id) ///
-cluster(hrmonth#naic_id)
-
-eststo M3_0
-quietly estadd local feS "Yes", replace
-quietly estadd local feST "No", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "Yes", replace
-quietly estadd local clST "No", replace
-estadd ysumm, replace
-
-* third best
-// quietly ///
-reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin /// control continous
-i.($ControlCategor) i.hrmonth /// control categorical
-[pweight=hh_weight_perc] ///
-,absorb(us_state naic_id) ///
-cluster(us_state#hrmonth)
-
-eststo M3_1
-quietly estadd local feS "Yes", replace
-quietly estadd local feST "No", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "No", replace
-quietly estadd local clST "Yes", replace
-estadd ysumm, replace
-
-
-* second best
-// quietly ///
-reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin /// control continous include covid
-i.($ControlCategor) /// control categorical
-[pweight=hh_weight_perc] ///
-,absorb(us_state#hrmonth naic_id) ///
-// cluster(hrmonth#naic_id)
-
-eststo M2_0
-quietly estadd local feS "No", replace
-quietly estadd local feST "Yes", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "No", replace
-quietly estadd local clST "No", replace
-estadd ysumm, replace
-
-
-* second best
-// quietly ///
-reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin /// control continous
-i.($ControlCategor) /// control categorical
-[pweight=hh_weight_perc] ///
-,absorb(us_state#hrmonth naic_id) ///
-cluster(hrmonth#naic_id)
-
-eststo M2_1
-quietly estadd local feS "No", replace
-quietly estadd local feST "Yes", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "Yes", replace
-quietly estadd local clST "No", replace
-estadd ysumm, replace
-
-* robert meeting
-/*
-- no weights for county reg
-- show what weights in table with footnoe
-- only two kinds of clustering max
-- run herteroskedacity on baseline reg
-- run hausmann test for random effects
-- don't exclude covid-cases for all regs
-- try a weights instead of p-weights
-- two groups of control variables, add gradually??
-- show difference in is_layoff across county base data
-*/
-
-
-* max ein zwei clustering arten
-
-* best option
-* There is variation across month and state as well as job, this variation causes herteroskedacity, which we account for by clustering
-
-// quietly ///
-reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin /// control continous
-i.($ControlCategor) /// control categorical
-[pweight=hh_weight_perc] ///
-,absorb(us_state#hrmonth naic_id) ///
-cluster(naic_id us_state#hrmonth)
+$DependVar /// 
+$InterestVars ///
+[aweight=hh_weight] ///
+,absorb(us_state)
 
 eststo M1
-quietly estadd local feS "No", replace
-quietly estadd local feST "Yes", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "No", replace
-quietly estadd local clST "Yes", replace
+quietly estadd local FE_S "Yes", replace
+quietly estadd local FE_ST "No", replace
+quietly estadd local FE_I "Yes", replace
+quietly estadd local FE_IT "No", replace
+quietly estadd local WEIG "Yes", replace
+
 estadd ysumm, replace
 
-* run M1 on county level
+*Heteroskedacity testing
+
+*2: MODEL
+* State and industry fixed effects
+//quietly ///
+reghdfe ///
+$DependVar /// 
+$InterestVars ///
+[aweight=hh_weight] ///
+,absorb(us_state naic_id)
+
+eststo M2
+quietly estadd local FE_S "Yes", replace
+quietly estadd local FE_ST "No", replace
+quietly estadd local FE_I "Yes", replace
+quietly estadd local FE_IT "No", replace
+quietly estadd local WEIG "Yes", replace
+
+estadd ysumm, replace
+
+*3: MODEL
+* adding age, education and income
+//quietly ///
+reghdfe ///
+$DependVar /// 
+$InterestVars ///
+$ControlContin i.$ControlCatEduc ///
+[aweight=hh_weight] ///
+,absorb(us_state naic_id)
+
+eststo M3
+quietly estadd local FE_S "Yes", replace
+quietly estadd local FE_ST "No", replace
+quietly estadd local FE_I "Yes", replace
+quietly estadd local FE_IT "No", replace
+quietly estadd local WEIG "Yes", replace
+
+estadd ysumm, replace
+
+*4: Model
+* adding control variables of family status and job related information
+//quietly ///
+reghdfe ///
+$DependVar /// 
+$InterestVars ///
+$ControlContin i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+[aweight=hh_weight] ///
+,absorb(us_state naic_id)
+
+eststo M4
+quietly estadd local FE_S "Yes", replace
+quietly estadd local FE_ST "No", replace
+quietly estadd local FE_I "Yes", replace
+quietly estadd local FE_IT "No", replace
+quietly estadd local WEIG "Yes", replace
+
+estadd ysumm, replace
+
+
+*5: MODEL
+* adding covid cases and time dimension
+//quietly ///
+reghdfe ///
+$DependVar /// 
+$InterestVars ///
+$ControlContin ///
+i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+$ControlCovid ///
+i.$TimeCat ///
+[aweight=hh_weight] ///
+,absorb(us_state naic_id)
+
+eststo M5
+quietly estadd local FE_S "Yes", replace
+quietly estadd local FE_ST "No", replace
+quietly estadd local FE_I "Yes", replace
+quietly estadd local FE_IT "No", replace
+quietly estadd local WEIG "Yes", replace
+
+estadd ysumm, replace
+
+*6: Model
+* we believe there is a fixed effect of state&time, implying that something (policy) 
+* varies over time, and that this needs to be accounted for
+* adding controls
+//quietly ///
+reghdfe ///
+$DependVar /// 
+$InterestVars ///
+$ControlContin ///
+i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+[aweight=hh_weight] ///
+,absorb(us_state#hrmonth naic_id)
+
+eststo M6
+quietly estadd local FE_S "No", replace
+quietly estadd local FE_ST "Yes", replace
+quietly estadd local FE_I "Yes", replace
+quietly estadd local FE_IT "No", replace
+quietly estadd local WEIG "Yes", replace
+
+estadd ysumm, replace
+
+
+*7: Model
+* we believe there is some significance to time&profession effects, wherefore 
+* we add these alongside the state&time fixed effect
+//quietly ///
+reghdfe ///
+$DependVar /// 
+$InterestVars ///
+$ControlContin ///
+i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+/// $ControlProf $ControlCovid
+[aweight=hh_weight] ///
+,absorb(us_state#hrmonth naic_id#hrmonth)
+
+eststo M7_0
+quietly estadd local FE_S "No", replace
+quietly estadd local FE_ST "Yes", replace
+quietly estadd local FE_I "No", replace
+quietly estadd local FE_IT "Yes", replace
+quietly estadd local WEIG "Yes", replace
+
+estadd ysumm, replace
+
 /*##########################################
 FE for County instead of state
 ############################################*/
-
 preserve
 drop if county_code==.
 
@@ -196,39 +233,42 @@ tabulate race_cat is_layoff, row nofreq chi2
 
 // quietly ///
 reghdfe ///
-$DependVar /// dependent variable
-$InterestVars /// varibels of interest
-$ControlContin new_deathpm new_casespm /// control continous
-i.($ControlCategor) /// control categorical
-,absorb(county_code#hrmonth naic_id) ///
-cluster(naic_id#hrmonth)
+$DependVar /// 
+$InterestVars ///
+$ControlContin ///
+i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+,absorb(county_code#hrmonth naic_id#hrmonth)
 
-eststo M1_1
-quietly estadd local feS "No", replace
-quietly estadd local feST "Yes", replace
-quietly estadd local feP "Yes", replace
-quietly estadd local clPT "Yes", replace
-quietly estadd local clST "No", replace
+eststo M7_1
+quietly estadd local FE_S "No", replace
+quietly estadd local FE_ST "Yes", replace
+quietly estadd local FE_I "No", replace
+quietly estadd local FE_IT "Yes", replace
+quietly estadd local WEIG "No", replace
+
 estadd ysumm, replace
 
 restore
 
 * robert meeting
-* explain why two clusters and shortcomings
-* discuss why note probit
+/*
+- show what weights in table with footnoe
+- run herteroskedacity on baseline reg
+*/
 
 
 /*##########################################
 Tables
 ############################################*/
 
-#delimit ;
-esttab M4 M3_0 M3_1 M2_0 M2_1 M1 M1_1 using "tables\Regs_table.csv",
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	s(feS feST feP  clPT clST N ymean,
-	label("State FE" "State Month FE" "Profession FE" "Cluster Profession Month" 	"Cluster State Month" "Observations" "Mean of Dep. Variable"))
-	keep($InterestVars $ControlContin);
-#delimit cr
+// #delimit ;
+// esttab M1 M2 M3 M4 M5 M6 M7_0 using "tables\Regs_table.csv",
+// 	label se star(* 0.10 ** 0.05 *** 0.01)
+// 	s(feS feST feP  clPT clST N ymean,
+// 	label("State FE" "State Month FE" "Industry FE" "Industry Month FE"
+// 	"Analytical Weights" "Observations" "Mean of Dep. Variable"))
+// 	keep($InterestVars "hh_income");
+// #delimit cr
 
 
 

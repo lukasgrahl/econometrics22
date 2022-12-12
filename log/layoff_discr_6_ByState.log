@@ -3,7 +3,7 @@
        log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_6_
 > ByState.log
   log type:  text
- opened on:  12 Dec 2022, 11:45:22
+ opened on:  12 Dec 2022, 16:16:54
 
 . use "data\layoff_discr\cps_main_prepro.dta", clear
 
@@ -12,9 +12,14 @@
 > Setting variables and data
 > ############################################*/
 . * global vars
-. global ControlCategor "hrmonth is_citiz level_educ hh_income "
+. global TimeCat "hrmonth"
 
-. // contract_type owns_business is_more1job no_child marista housing_kind"
+. global ControlCatEduc "level_educ hh_income"
+
+. global ControlCateFam "no_child marista housing_kind is_citiz"
+
+. global ConntrolCatJob "contract_type owns_business is_more1job"
+
 . 
 . global ControlContin "age age2"
 
@@ -25,6 +30,7 @@
 . global PThresh 0.1
 
 . 
+. 
 . * excludig consecutive observation of households
 . sort hh_id
 
@@ -33,9 +39,6 @@
 . keep if dup<=1
 (38,426 observations deleted)
 
-. 
-. *exclude all observation without county code
-. // drop if county_code==.
 . 
 . /*##########################################
 > FE by state Profession FE
@@ -70,14 +73,15 @@
 .         * fe regression 
 .         quietly ///
 >         reghdfe ///
->         $DependVar /// dependent variable
->         $InterestVars /// varibels of interest
->         $ControlContin new_deathpm new_casespm /// control continous
->         i.($ControlCategor) /// control categorical
->         [pweight=hh_weight_perc] ///
->         ,absorb(naic_id) ///
->         
-  6.         * add table specifications
+>         $DependVar /// 
+>         $InterestVars ///
+>         $ControlContin ///
+>         i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+>         ,absorb(naic_id#hrmonth) ///
+> 
+  6. //      [aweight=hh_weight] ///
+.         
+.         * add table specifications
 .         eststo `x'
   7.         quietly estadd local State `x', replace
   8.         
@@ -160,7 +164,6 @@ WY
 . postclose `results'
 
 . 
-. 
 . /*##########################################
 > Analyse results
 > ############################################*/
@@ -194,87 +197,21 @@ WY
 . preserve 
 
 . keep if coef_female_sig!=0 | coef_poc_sig!=0
-(33 observations deleted)
+(38 observations deleted)
 
-. graph bar coef_female_sig coef_poc_sig, over(state) scale(*.5)
+. graph bar coef_female_sig coef_poc_sig coef_asian_sig coef_native_sig coef_hisp
+> _sig, over(state) scale(*.5)
 
 . graph export "tables\by_state_coeff.png", replace
-(file tables\by_state_coeff.png not found)
 file tables\by_state_coeff.png saved as PNG format
 
 .  //, label(labsize(vsmall)))
 . restore
 
 . 
-. /*##########################################
-> Tables
-> ############################################*/
-. 
-. #delimit ;
-delimiter now ;
-. esttab AK AL AR AZ CA IA ID IL IN using "tables\State_table1.csv",
->         label se star(* 0.10 ** 0.05 *** 0.01)
->         s(State N ymean, 
->         label("State" "Observations" "Mean of Dep. Variable"))
->         keep($InterestVars);
-(output written to tables\State_table1.csv)
+. exit
 
-. #delimit cr
-delimiter now cr
-. 
-. #delimit ;
-delimiter now ;
-. esttab MS MT NC ND NE NH NJ NM NV using "tables\State_table2.csv",
->         label se star(* 0.10 ** 0.05 *** 0.01)
->         s(State N ymean, 
->         label("State" "Observations" "Mean of Dep. Variable"))
->         keep($InterestVars);
-(output written to tables\State_table2.csv)
-
-. #delimit cr
-delimiter now cr
-. 
-. #delimit ;
-delimiter now ;
-. esttab KS KY LA MA MD ME MI MN MO using "tables\State_table3.csv",
->         label se star(* 0.10 ** 0.05 *** 0.01)
->         s(State N ymean, 
->         label("State" "Observations" "Mean of Dep. Variable"))
->         keep($InterestVars);
-(output written to tables\State_table3.csv)
-
-. #delimit cr
-delimiter now cr
-. 
-. #delimit ;
-delimiter now ;
-. esttab NY OH OK OR PA RI SC SD TN using "tables\State_table4.csv",
->         label se star(* 0.10 ** 0.05 *** 0.01)
->         s(State N ymean, 
->         label("State" "Observations" "Mean of Dep. Variable"))
->         keep($InterestVars);
-(output written to tables\State_table4.csv)
-
-. #delimit cr
-delimiter now cr
-. 
-. #delimit ;
-delimiter now ;
-. esttab TX UT VA VT WA WI WV WY using "tables\State_table5.csv",
->         label se star(* 0.10 ** 0.05 *** 0.01)
->         s(State N ymean, 
->         label("State" "Observations" "Mean of Dep. Variable"))
->         keep($InterestVars);
-(output written to tables\State_table5.csv)
-
-. #delimit cr
-delimiter now cr
-. 
 end of do-file
 
-. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_4_fe.do"
 
-. *Preamble
-. clear mata
-
-. capture log close
+. exit, clear

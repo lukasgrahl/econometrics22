@@ -162,8 +162,8 @@ replace is_female=1 if gender==2
 sum hh_weight
 gen hh_weight_perc = hh_weight /r(sum)
 
-// drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contract_type==. & owns_business==.
-
+* all under highschool into one category
+replace level_educ=38 if level_educ<=38
 
 save "data\layoff_discr\cps_main_prepro.dta", replace
 

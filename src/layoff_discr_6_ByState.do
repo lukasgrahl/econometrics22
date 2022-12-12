@@ -11,21 +11,21 @@ use "data\layoff_discr\cps_main_prepro.dta", clear
 Setting variables and data
 ############################################*/
 * global vars
-global ControlCategor "hrmonth is_citiz level_educ hh_income "
-// contract_type owns_business is_more1job no_child marista housing_kind"
+global TimeCat "hrmonth"
+global ControlCatEduc "level_educ hh_income"
+global ControlCateFam "no_child marista housing_kind is_citiz"
+global ConntrolCatJob "contract_type owns_business is_more1job"
 
 global ControlContin "age age2"
 global InterestVars "is_female is_poc is_asian is_hisp is_native"
 global DependVar "is_layoff"
 global PThresh 0.1
 
+
 * excludig consecutive observation of households
 sort hh_id
 quietly by hh_id:  gen dup = cond(_N==1,0,_n)
 keep if dup<=1
-
-*exclude all observation without county code
-// drop if county_code==.
 
 /*##########################################
 FE by state Profession FE
@@ -52,11 +52,13 @@ foreach x of local USStates{
 	* fe regression 
 	quietly ///
 	reghdfe ///
-	$DependVar /// dependent variable
-	$InterestVars /// varibels of interest
-	$ControlContin new_deathpm new_casespm /// control continous
-	i.($ControlCategor) /// control categorical
-	,absorb(naic_id) ///
+	$DependVar /// 
+	$InterestVars ///
+	$ControlContin ///
+	i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+	,absorb(naic_id#hrmonth) ///
+
+// 	[aweight=hh_weight] ///
 	
 	* add table specifications
 	eststo `x'
@@ -87,7 +89,6 @@ foreach x of local USStates{
 }
 postclose `results'
 
-
 /*##########################################
 Analyse results
 ############################################*/
@@ -107,15 +108,16 @@ gen coef_hisp_sig= coef_hisp * (p_hisp <= $PThresh)
 
 preserve 
 keep if coef_female_sig!=0 | coef_poc_sig!=0
-graph bar coef_female_sig coef_poc_sig, over(state) scale(*.5)
+graph bar coef_female_sig coef_poc_sig coef_asian_sig coef_native_sig coef_hisp_sig, over(state) scale(*.5)
 graph export "tables\by_state_coeff.png", replace
  //, label(labsize(vsmall)))
 restore
 
+exit
 /*##########################################
 Tables
 ############################################*/
-
+exit
 #delimit ;
 esttab AK AL AR AZ CA IA ID IL IN using "tables\State_table1.csv",
 	label se star(* 0.10 ** 0.05 *** 0.01)

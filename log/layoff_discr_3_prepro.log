@@ -3,7 +3,7 @@
        log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_3_
 > prepro.log
   log type:  text
- opened on:  11 Dec 2022, 13:12:22
+ opened on:  12 Dec 2022, 15:41:44
 
 . 
 . * load data
@@ -586,8 +586,23 @@ hrmonth_str generated as str1
 (27 missing values generated)
 
 . 
-. // drop if level_educ==. & hh_income==. & is_more1job==. & no_child==. & contra
-> ct_type==. & owns_business==.
+. * all under highschool into one category
+. replace level_educ=38 if level_educ<=38
+(4,361 real changes made)
+
+. 
+. tab race_cat
+
+   race_cat |      Freq.     Percent        Cum.
+------------+-----------------------------------
+      asian |      4,874        5.83        5.83
+       hisp |         77        0.09        5.93
+     native |      1,213        1.45        7.38
+        poc |      8,671       10.38       17.76
+      white |     68,713       82.24      100.00
+------------+-----------------------------------
+      Total |     83,548      100.00
+
 . 
 . 
 . save "data\layoff_discr\cps_main_prepro.dta", replace
@@ -599,7 +614,7 @@ file data\layoff_discr\cps_main_prepro.dta saved
 . 
 end of do-file
 
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD55e4_000000.tmp"
+. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_4_fe.do"
 
 . *Preamble
 . clear mata
