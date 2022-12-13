@@ -36,7 +36,7 @@ Setting variables and data
 global TimeCat "hrmonth"
 
 global ControlCatEduc "hh_income level_educ"
-global ControlCatFam "no_child marista housing_kind is_citiz"
+global ControlCatFam "marista" // no_child  housing_kind is_citiz
 global ConntrolCatJob "owns_business contract_type is_more1job"
 global ControlContin "age age2"
 global ControlCovid "new_deathpm new_casespm"
@@ -44,6 +44,7 @@ global ControlProf "teleworkable_wage teleworkable_emp"
 
 global InterestVars "is_female is_poc is_asian is_hisp is_native"
 global DependVar "is_layoff"
+global Cluster "naic_id"
 
 * excludig consecutive observation of households
 sort hh_id
@@ -67,15 +68,21 @@ To Do
 Fixed effect models
 ############################################*/
 
-* Hausman test: H0 Difference in coefficients not systematic
+* Hausman test, Wald test
 xtset us_state
 xtreg $DependVar $InterestVars, fe
 eststo FE
+*test for heteroskedacity
+xttest3 // We can reject H0: sigma(i)^2 varies, thus there is herteroskedacity
+
 xtreg $DependVar $InterestVars, re
 eststo RE
 
-hausman FE RE
-* we can reject the H0, differences are systematic
+* Hausman test: H0 Difference in coefficients not systematic
+hausman FE RE // we can reject the H0, differences are systematic thus FE
+
+* Heteroskedacity
+* As heteroskedacity exists we are clustering our regressions by naic_id, to correct standar errors. We do not use vce(robust), as it assumes observations to be independent. An assumption that in a model of common intercepts by groups (stat and profession) is unlikely to hold.
 
 
 *1: BASELINE MODEL
@@ -105,7 +112,8 @@ reghdfe ///
 $DependVar /// 
 $InterestVars ///
 [aweight=hh_weight] ///
-,absorb(us_state naic_id)
+,absorb(us_state naic_id) ///
+vce(cluster $Cluster)
 
 eststo M2
 quietly estadd local FE_S "Yes", replace
@@ -117,14 +125,16 @@ quietly estadd local WEIG "Yes", replace
 estadd ysumm, replace
 
 *3: MODEL
-* adding age, education and income
+* adding age, education and income, as well as time
 //quietly ///
 reghdfe ///
 $DependVar /// 
 $InterestVars ///
 $ControlContin i.$ControlCatEduc ///
+i.$TimeCat ///
 [aweight=hh_weight] ///
-,absorb(us_state naic_id)
+,absorb(us_state naic_id) ///
+vce(cluster $Cluster)
 
 eststo M3
 quietly estadd local FE_S "Yes", replace
@@ -141,9 +151,11 @@ estadd ysumm, replace
 reghdfe ///
 $DependVar /// 
 $InterestVars ///
-$ControlContin i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+$ControlContin i.($ControlCatEduc $ConntrolCatJob $ControlCatFam) ///
+i.$TimeCat ///
 [aweight=hh_weight] ///
-,absorb(us_state naic_id)
+,absorb(us_state naic_id) ///
+vce(cluster $Cluster)
 
 eststo M4
 quietly estadd local FE_S "Yes", replace
@@ -166,7 +178,8 @@ i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
 $ControlCovid ///
 i.$TimeCat ///
 [aweight=hh_weight] ///
-,absorb(us_state naic_id)
+,absorb(us_state naic_id) ///
+vce(cluster $Cluster)
 
 eststo M5
 quietly estadd local FE_S "Yes", replace
@@ -188,7 +201,8 @@ $InterestVars ///
 $ControlContin ///
 i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
 [aweight=hh_weight] ///
-,absorb(us_state#hrmonth naic_id)
+,absorb(us_state#hrmonth naic_id) ///
+vce(cluster $Cluster)
 
 eststo M6
 quietly estadd local FE_S "No", replace
@@ -211,7 +225,8 @@ $ControlContin ///
 i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
 /// $ControlProf $ControlCovid
 [aweight=hh_weight] ///
-,absorb(us_state#hrmonth naic_id#hrmonth)
+,absorb(us_state#hrmonth naic_id#hrmonth) ///
+vce(cluster $Cluster)
 
 eststo M7_0
 quietly estadd local FE_S "No", replace
@@ -237,7 +252,8 @@ $DependVar ///
 $InterestVars ///
 $ControlContin ///
 i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
-,absorb(county_code#hrmonth naic_id#hrmonth)
+,absorb(county_code#hrmonth naic_id#hrmonth) ///
+vce(cluster $Cluster)
 
 eststo M7_1
 quietly estadd local FE_S "No", replace
@@ -260,6 +276,15 @@ restore
 /*##########################################
 Tables
 ############################################*/
+// * Prepare estimates for -estout-
+// 	estfe . model*, labels(turn "Turn FE" turn#trunk "Turn-Trunk FE")
+// 	return list
+//
+// * Run estout/esttab
+// 	esttab . model* , indicate("Length Controls=length" `r(indicate_fe)')
+//		
+// * Return stored estimates to their previous state
+// 	estfe . model*, restore
 
 // #delimit ;
 // esttab M1 M2 M3 M4 M5 M6 M7_0 using "tables\Regs_table.csv",

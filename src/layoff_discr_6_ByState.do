@@ -48,7 +48,7 @@ foreach x of local USStates{
 	
 	preserve
 	quietly keep if us_state_str=="`x'"
-	
+		
 	* fe regression 
 	quietly ///
 	reghdfe ///
