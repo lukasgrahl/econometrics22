@@ -3,7 +3,7 @@
        log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_6_
 > ByState.log
   log type:  text
- opened on:  12 Dec 2022, 16:16:54
+ opened on:  17 Dec 2022, 15:05:00
 
 . use "data\layoff_discr\cps_main_prepro.dta", clear
 
@@ -29,7 +29,8 @@
 
 . global PThresh 0.1
 
-. 
+. global Cluster " naic_id "
+
 . 
 . * excludig consecutive observation of households
 . sort hh_id
@@ -37,7 +38,7 @@
 . quietly by hh_id:  gen dup = cond(_N==1,0,_n)
 
 . keep if dup<=1
-(38,426 observations deleted)
+(38,427 observations deleted)
 
 . 
 . /*##########################################
@@ -67,9 +68,11 @@
 . foreach x of local USStates{
   2.         display "`x'"
   3.         
+.         clear mata
+  4.         
 .         preserve
-  4.         quietly keep if us_state_str=="`x'"
-  5.         
+  5.         quietly keep if us_state_str=="`x'"
+  6.         
 .         * fe regression 
 .         quietly ///
 >         reghdfe ///
@@ -78,37 +81,37 @@
 >         $ControlContin ///
 >         i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
 >         ,absorb(naic_id#hrmonth) ///
-> 
-  6. //      [aweight=hh_weight] ///
+>         vce(cluster $Cluster)
+  7.         
 .         
 .         * add table specifications
 .         eststo `x'
-  7.         quietly estadd local State `x', replace
-  8.         
+  8.         quietly estadd local State `x', replace
+  9.         
 .         *store coefficients
-.         local t_f = _b[is_female]/_se[is_female]
-  9.         local t_p = _b[is_poc]/_se[is_poc]
- 10.         local t_a = _b[is_asian]/_se[is_asian]
- 11.         local t_n = _b[is_native]/_se[is_native]
- 12.         local t_h = _b[is_hisp]/_se[is_hisp]
- 13. 
+.         local t_f _b[is_female]/_se[is_female]
+ 10.         local t_p _b[is_poc]/_se[is_poc] 
+ 11.         local t_a _b[is_asian]/_se[is_asian]
+ 12.         local t_n _b[is_native]/_se[is_native]
+ 13.         local t_h _b[is_hisp]/_se[is_hisp] 
+ 14. 
 .         * get p values
 .         local p_f = 2*ttail(e(df_r),abs(`t_f'))
- 14.         local p_p = 2*ttail(e(df_r),abs(`t_p'))
- 15.         local p_a = 2*ttail(e(df_r),abs(`t_a'))
- 16.         local p_n = 2*ttail(e(df_r),abs(`t_n'))
- 17.         local p_h = 2*ttail(e(df_r),abs(`t_h'))
- 18.         
+ 15.         local p_p = 2*ttail(e(df_r),abs(`t_p'))
+ 16.         local p_a = 2*ttail(e(df_r),abs(`t_a'))
+ 17.         local p_n = 2*ttail(e(df_r),abs(`t_n'))
+ 18.         local p_h = 2*ttail(e(df_r),abs(`t_h'))
+ 19.         
 .         post `results' ///
 >         (`Enum') ///
 >         (_b[is_female]) (_b[is_poc]) (_b[is_asian]) (_b[is_native]) (_b[is_hisp
 > ]) /// 
 >         (`p_f') (`p_p') (`p_a') (`p_n') (`p_h')
- 19.         
+ 20.         
 .         * restore and re-initiate loop
 .         restore
- 20.         local Enum = `Enum' + 1
- 21. }
+ 21.         local Enum = `Enum' + 1
+ 22. }
 AK
 AL
 AR
@@ -197,7 +200,7 @@ WY
 . preserve 
 
 . keep if coef_female_sig!=0 | coef_poc_sig!=0
-(38 observations deleted)
+(19 observations deleted)
 
 . graph bar coef_female_sig coef_poc_sig coef_asian_sig coef_native_sig coef_hisp
 > _sig, over(state) scale(*.5)
@@ -209,9 +212,25 @@ file tables\by_state_coeff.png saved as PNG format
 . restore
 
 . 
-. exit
-
 end of do-file
 
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD23dc_000000.tmp"
 
-. exit, clear
+. help(graph)
+
+. 
+end of do-file
+
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD23dc_000000.tmp"
+
+. help(graph bar)
+
+. 
+end of do-file
+
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD23dc_000000.tmp"
+
+. *Preamble
+. clear mata
+
+. capture log close

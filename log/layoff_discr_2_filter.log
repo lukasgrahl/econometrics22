@@ -3,7 +3,7 @@
        log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_2_
 > filter.log
   log type:  text
- opened on:  10 Dec 2022, 11:53:01
+ opened on:  17 Dec 2022, 14:44:59
 
 . 
 . 
@@ -258,6 +258,7 @@
 
 . 
 . save "data\layoff_discr\cps_main_filter.dta", replace
+(file data\layoff_discr\cps_main_filter.dta not found)
 file data\layoff_discr\cps_main_filter.dta saved
 
 . 
@@ -265,7 +266,8 @@ file data\layoff_discr\cps_main_filter.dta saved
 . 
 end of do-file
 
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD89cc_000000.tmp"
+. do "C:\Users\LukasGrahl\Documents\GIT\econometrics22\src\layoff_discr_3_prepro.
+> do"
 
 . *Preamble
 . clear mata

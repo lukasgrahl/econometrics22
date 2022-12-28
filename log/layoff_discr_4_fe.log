@@ -1,31 +1,31 @@
----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_4_
-> fe.log
+       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_4_fe.log
   log type:  text
- opened on:  13 Dec 2022, 13:38:24
+ opened on:  28 Dec 2022, 20:33:59
 
 . use "data\layoff_discr\cps_main_prepro.dta", clear
 
 . 
 . *tab unemployement by race and month
-. tabulate race_cat is_layoff, row nofreq chi2
+. asdoc tabulate race_cat is_layoff, row nofreq chi2 save(tables\Layoff_tab_state.doc)
+(File tables\Layoff_tab_state.doc already exists, option append was assumed)
 
            |       is_layoff
   race_cat |         0          1 |     Total
 -----------+----------------------+----------
-     asian |     90.77       9.23 |    100.00 
-      hisp |     94.81       5.19 |    100.00 
-    native |     87.72      12.28 |    100.00 
-       poc |     89.48      10.52 |    100.00 
-     white |     92.24       7.76 |    100.00 
+     asian |     90.40       9.60 |    100.00 
+      hisp |     94.67       5.33 |    100.00 
+    native |     88.03      11.97 |    100.00 
+       poc |     89.42      10.58 |    100.00 
+     white |     92.22       7.78 |    100.00 
 -----------+----------------------+----------
-     Total |     91.80       8.20 |    100.00 
+     Total |     91.77       8.23 |    100.00 
 
-          Pearson chi2(4) = 114.1754   Pr = 0.000
+          Pearson chi2(4) = 116.9967   Pr = 0.000
+Click to Open File:  tables\Layoff_tab_state.doc
 
 . 
-. * how to export that table into a nice format ??
 . 
 . /*##########################################
 > Assumption check
@@ -35,60 +35,31 @@
 . correlate /// 
 > is_female is_poc is_asian is_hisp is_native ///
 > age age2 new_deathpm new_casespm ///
-> is_citiz level_educ hh_income contract_type owns_business is_more1job no_child 
-> marista housing_kind
-(obs=83,288)
+> is_citiz level_educ hh_income contract_type owns_business is_more1job no_child marista housing_kind
+(obs=83,518)
 
-             | is_fem~e   is_poc is_asian  is_hisp is_nat~e      age     age2
--------------+---------------------------------------------------------------
+             | is_fem~e   is_poc is_asian  is_hisp is_nat~e      age     age2 new_de~m new_ca~m is_citiz level_~c hh_inc~e contra~e owns_b~s is_mor~b no_child  marista housin~d
+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------
    is_female |   1.0000
-      is_poc |   0.0687   1.0000
-    is_asian |  -0.0053  -0.0847   1.0000
-     is_hisp |   0.0017  -0.0103  -0.0076   1.0000
-   is_native |   0.0113  -0.0413  -0.0302  -0.0037   1.0000
-         age |   0.0027  -0.0370  -0.0403  -0.0046  -0.0260   1.0000
-        age2 |   0.0031  -0.0385  -0.0451  -0.0044  -0.0272   0.9855   1.0000
- new_deathpm |   0.0043   0.0415   0.0082  -0.0121  -0.0303   0.0096   0.0081
- new_casespm |   0.0070   0.0596   0.0068  -0.0173  -0.0383   0.0057   0.0041
-    is_citiz |  -0.0550  -0.0078   0.2174  -0.0029   0.0050  -0.0635  -0.0734
-  level_educ |   0.0721  -0.0644   0.1225  -0.0046  -0.0439   0.0581   0.0377
-   hh_income |  -0.0584  -0.1423   0.0558  -0.0062  -0.0424   0.0555   0.0347
-contract_t~e |   0.1416  -0.0077  -0.0184   0.0052  -0.0017   0.0395   0.0897
-owns_busin~s |   0.0388   0.0756   0.0155   0.0021   0.0219  -0.1306  -0.1365
- is_more1job |  -0.0218  -0.0068   0.0134   0.0009   0.0071  -0.0030   0.0011
-    no_child |  -0.0280  -0.0128   0.0183   0.0003   0.0224  -0.1990  -0.2416
-     marista |   0.0638   0.1430  -0.0344   0.0150   0.0206  -0.3604  -0.3176
-housing_kind |  -0.0068  -0.0075  -0.0400  -0.0060   0.0159  -0.0062  -0.0059
-
-             | new_de~m new_ca~m is_citiz level_~c hh_inc~e contra~e owns_b~s
--------------+---------------------------------------------------------------
- new_deathpm |   1.0000
- new_casespm |   0.6272   1.0000
-    is_citiz |   0.0108   0.0147   1.0000
-  level_educ |   0.0527   0.0723  -0.0681   1.0000
-   hh_income |   0.0593   0.0719  -0.0825   0.3545   1.0000
-contract_t~e |  -0.0182  -0.0182  -0.0103  -0.0937  -0.1484   1.0000
-owns_busin~s |   0.0177   0.0232   0.0374  -0.0521  -0.0918  -0.0786   1.0000
- is_more1job |   0.0216   0.0223   0.0273  -0.0512  -0.0173   0.0295   0.1544
-    no_child |  -0.0116  -0.0123   0.0750   0.0433   0.0514  -0.0714  -0.0128
-     marista |   0.0109   0.0223  -0.0379  -0.1091  -0.2807   0.0644   0.1273
-housing_kind |  -0.0286  -0.0431   0.0210  -0.1434  -0.1349   0.0171   0.0318
-
-             | is_mor~b no_child  marista housin~d
--------------+------------------------------------
- is_more1job |   1.0000
-    no_child |  -0.0098   1.0000
-     marista |  -0.0007  -0.2945   1.0000
-housing_kind |   0.0140  -0.0018   0.0265   1.0000
+      is_poc |   0.0648   1.0000
+    is_asian |  -0.0085  -0.0846   1.0000
+     is_hisp |   0.0031  -0.0102  -0.0075   1.0000
+   is_native |   0.0063  -0.0411  -0.0301  -0.0036   1.0000
+         age |   0.0043  -0.0389  -0.0387  -0.0014  -0.0224   1.0000
+        age2 |   0.0042  -0.0394  -0.0438  -0.0019  -0.0235   0.9857   1.0000
+ new_deathpm |   0.0082   0.0412   0.0075  -0.0118  -0.0305   0.0063   0.0058   1.0000
+ new_casespm |   0.0060   0.0573   0.0082  -0.0152  -0.0396   0.0058   0.0045   0.6273   1.0000
+    is_citiz |  -0.0536  -0.0082   0.2147  -0.0027   0.0060  -0.0671  -0.0762   0.0117   0.0168   1.0000
+  level_educ |   0.0735  -0.0653   0.1247  -0.0036  -0.0446   0.0543   0.0344   0.0520   0.0703  -0.0701   1.0000
+   hh_income |  -0.0557  -0.1422   0.0545  -0.0066  -0.0418   0.0594   0.0379   0.0590   0.0723  -0.0861   0.3566   1.0000
+contract_t~e |   0.1415  -0.0046  -0.0215   0.0035  -0.0003   0.0414   0.0896  -0.0172  -0.0228  -0.0070  -0.0904  -0.1506   1.0000
+owns_busin~s |   0.0395   0.0746   0.0129   0.0028   0.0192  -0.1272  -0.1322   0.0181   0.0234   0.0369  -0.0502  -0.0919  -0.0762   1.0000
+ is_more1job |  -0.0138  -0.0031   0.0135   0.0007   0.0062  -0.0047  -0.0005   0.0184   0.0174   0.0261  -0.0486  -0.0187   0.0298   0.1528   1.0000
+    no_child |  -0.0264  -0.0127   0.0188  -0.0010   0.0202  -0.1999  -0.2421  -0.0124  -0.0123   0.0734   0.0423   0.0523  -0.0669  -0.0134  -0.0106   1.0000
+     marista |   0.0599   0.1455  -0.0346   0.0133   0.0181  -0.3582  -0.3155   0.0135   0.0228  -0.0340  -0.1067  -0.2832   0.0625   0.1262   0.0016  -0.2947   1.0000
+housing_kind |  -0.0064  -0.0099  -0.0401  -0.0059   0.0160  -0.0078  -0.0074  -0.0287  -0.0437   0.0211  -0.1425  -0.1339   0.0206   0.0315   0.0115  -0.0009   0.0274   1.0000
 
 
-. 
-. * new_casespm ~ new_deathpm corr .6
-. * hh_income ~ level_educ corr .35
-. * marista ~ age corr .35
-. * age ~ age2 corr .98
-. * is_citiz * is_asian .38
-. 
 . 
 . /*##########################################
 > Setting variables and data
@@ -97,24 +68,24 @@ housing_kind |   0.0140  -0.0018   0.0265   1.0000
 . global TimeCat "hrmonth"
 
 . 
-. global ControlCatEduc "hh_income level_educ"
+. global ControlCatWealth " housing_kind hh_income owns_business "
 
-. global ControlCatFam "marista" // no_child  housing_kind is_citiz
+. global ControlCatFam " marista is_citiz " // no_child  
 
-. global ConntrolCatJob "owns_business contract_type is_more1job"
+. global ConntrolCatJob " level_educ contract_type is_more1job "
 
-. global ControlContin "age age2"
+. global ControlContin " age age2 "
 
-. global ControlCovid "new_deathpm new_casespm"
+. global ControlCovid " new_deathpm new_casespm "
 
-. global ControlProf "teleworkable_wage teleworkable_emp"
+. global ControlProf " teleworkable_wage teleworkable_emp "
 
 . 
-. global InterestVars "is_female is_poc is_asian is_hisp is_native"
+. global InterestVars " is_female is_poc is_asian is_hisp is_native "
 
-. global DependVar "is_layoff"
+. global DependVar " is_layoff "
 
-. global Cluster "naic_id"
+. global Cluster " naic_id "
 
 . 
 . * excludig consecutive observation of households
@@ -123,62 +94,52 @@ housing_kind |   0.0140  -0.0018   0.0265   1.0000
 . quietly by hh_id:  gen dup = cond(_N==1,0,_n)
 
 . keep if dup<=1
-(38,426 observations deleted)
+(38,427 observations deleted)
 
 . 
 . /*##########################################
-> To Do
+> Testing 
 > ############################################*/
 . 
-. // *Run the Hausman Test
-. // hausman FE RE 
-. 
-. // *Run Heteroskedacity test
-. // white or breusch pagan
-. 
-. // * robust standard erros and het white test
-. 
-. 
-. /*##########################################
-> Fixed effect models
-> ############################################*/
-. 
-. * Hausman test, Wald test
+. * Wald test for heteroskedacity
 . xtset us_state
 
 Panel variable: us_state (unbalanced)
 
+. 
+. * base line FE model
 . xtreg $DependVar $InterestVars, fe
 
-Fixed-effects (within) regression               Number of obs     =     45,121
+Fixed-effects (within) regression               Number of obs     =     45,117
 Group variable: us_state                        Number of groups  =         51
 
 R-squared:                                      Obs per group:
-     Within  = 0.0028                                         min =        400
-     Between = 0.0017                                         avg =      884.7
-     Overall = 0.0027                                         max =      3,814
+     Within  = 0.0025                                         min =        400
+     Between = 0.0011                                         avg =      884.6
+     Overall = 0.0024                                         max =      3,812
 
-                                                F(5,45065)        =      25.33
-corr(u_i, Xb) = -0.0193                         Prob > F          =     0.0000
+                                                F(5,45061)        =      22.67
+corr(u_i, Xb) = -0.0228                         Prob > F          =     0.0000
 
 ------------------------------------------------------------------------------
    is_layoff | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-   is_female |   .0179394    .002605     6.89   0.000     .0128335    .0230453
-      is_poc |   .0311327   .0043789     7.11   0.000     .0225499    .0397154
-    is_asian |   .0040546   .0057855     0.70   0.483    -.0072851    .0153942
-     is_hisp |  -.0531256   .0444843    -1.19   0.232    -.1403155    .0340643
-   is_native |   .0504114   .0109875     4.59   0.000     .0288757     .071947
-       _cons |   .0707367   .0018658    37.91   0.000     .0670798    .0743937
+   is_female |   .0187185   .0025956     7.21   0.000     .0136311    .0238059
+      is_poc |   .0303767   .0043677     6.95   0.000      .021816    .0389374
+    is_asian |   .0021981   .0057683     0.38   0.703    -.0091079    .0135041
+     is_hisp |  -.0237178   .0468184    -0.51   0.612    -.1154826    .0680471
+   is_native |   .0284091   .0109742     2.59   0.010     .0068995    .0499188
+       _cons |   .0701967   .0018691    37.56   0.000     .0665332    .0738602
 -------------+----------------------------------------------------------------
-     sigma_u |  .02749729
-     sigma_e |  .27515005
-         rho |  .00988837   (fraction of variance due to u_i)
+     sigma_u |  .02611364
+     sigma_e |   .2743514
+         rho |   .0089785   (fraction of variance due to u_i)
 ------------------------------------------------------------------------------
-F test that all u_i=0: F(50, 45065) = 7.54                   Prob > F = 0.0000
+F test that all u_i=0: F(50, 45061) = 7.00                   Prob > F = 0.0000
 
 . eststo FE
 
+. 
 . *test for heteroskedacity
 . xttest3 // We can reject H0: sigma(i)^2 varies, thus there is herteroskedacity
 
@@ -187,37 +148,38 @@ in fixed effect regression model
 
 H0: sigma(i)^2 = sigma^2 for all i
 
-chi2 (51)  =     372.01
+chi2 (51)  =     350.10
 Prob>chi2 =      0.0000
 
 
 . 
+. *baseline RE model
 . xtreg $DependVar $InterestVars, re
 
-Random-effects GLS regression                   Number of obs     =     45,121
+Random-effects GLS regression                   Number of obs     =     45,117
 Group variable: us_state                        Number of groups  =         51
 
 R-squared:                                      Obs per group:
-     Within  = 0.0028                                         min =        400
-     Between = 0.0044                                         avg =      884.7
-     Overall = 0.0027                                         max =      3,814
+     Within  = 0.0025                                         min =        400
+     Between = 0.0040                                         avg =      884.6
+     Overall = 0.0024                                         max =      3,812
 
-                                                Wald chi2(5)      =     126.57
+                                                Wald chi2(5)      =     113.14
 corr(u_i, X) = 0 (assumed)                      Prob > chi2       =     0.0000
 
 ------------------------------------------------------------------------------
    is_layoff | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-   is_female |   .0179348   .0026049     6.88   0.000     .0128293    .0230404
-      is_poc |   .0307698    .004351     7.07   0.000      .022242    .0392977
-    is_asian |   .0060563   .0057505     1.05   0.292    -.0052145    .0173271
-     is_hisp |   -.047274    .044403    -1.06   0.287    -.1343022    .0397542
-   is_native |   .0513897    .010951     4.69   0.000      .029926    .0728533
-       _cons |   .0685736   .0037267    18.40   0.000     .0612693    .0758779
+   is_female |   .0187819   .0025955     7.24   0.000     .0136948     .023869
+      is_poc |   .0299393    .004337     6.90   0.000     .0214388    .0384397
+    is_asian |   .0043835   .0057309     0.76   0.444    -.0068488    .0156158
+     is_hisp |  -.0162795   .0467242    -0.35   0.728    -.1078573    .0752982
+   is_native |   .0295743   .0109333     2.70   0.007     .0081454    .0510032
+       _cons |   .0678548   .0035684    19.02   0.000     .0608608    .0748487
 -------------+----------------------------------------------------------------
-     sigma_u |  .02274656
-     sigma_e |  .27515005
-         rho |  .00678788   (fraction of variance due to u_i)
+     sigma_u |  .02139893
+     sigma_e |   .2743514
+         rho |  .00604694   (fraction of variance due to u_i)
 ------------------------------------------------------------------------------
 
 . eststo RE
@@ -230,11 +192,11 @@ corr(u_i, X) = 0 (assumed)                      Prob > chi2       =     0.0000
              |      (b)          (B)            (b-B)     sqrt(diag(V_b-V_B))
              |       FE           RE         Difference       Std. err.
 -------------+----------------------------------------------------------------
-   is_female |    .0179394     .0179348        4.56e-06        .0000191
-      is_poc |    .0311327     .0307698        .0003628        .0004936
-    is_asian |    .0040546     .0060563       -.0020017        .0006351
-     is_hisp |   -.0531256     -.047274       -.0058515        .0026882
-   is_native |    .0504114     .0513897       -.0009783        .0008941
+   is_female |    .0187185     .0187819       -.0000634        .0000188
+      is_poc |    .0303767     .0299393        .0004374        .0005162
+    is_asian |    .0021981     .0043835       -.0021854        .0006563
+     is_hisp |   -.0237178    -.0162795       -.0074383        .0029685
+   is_native |    .0284091     .0295743       -.0011652        .0009463
 ------------------------------------------------------------------------------
                           b = Consistent under H0 and Ha; obtained from xtreg.
            B = Inconsistent under Ha, efficient under H0; obtained from xtreg.
@@ -242,15 +204,169 @@ corr(u_i, X) = 0 (assumed)                      Prob > chi2       =     0.0000
 Test of H0: Difference in coefficients not systematic
 
     chi2(5) = (b-B)'[(V_b-V_B)^(-1)](b-B)
-            =  18.98
-Prob > chi2 = 0.0019
+            =  21.25
+Prob > chi2 = 0.0007
+
+. * However, the Hausman test is unable to account for heteroskedacity, wherefore we additionally perform the Mundlack test
+. 
+. * Mundlack test to identify correct model specification
+. *##################################
+. 
+. /*##########################################
+> Mundlack test
+> ############################################*/
+. 
+. *H0: The beta coefficient of state variant variables are zero, suggesting no evidence of correlation between effects and panel variable
+. 
+. * Method suggested by Mundlak, Y. 1978: On the pooling of time series and cross section data. Econometrica 46:69-85., source: https://blog.stata.com/2015/10/29/fixed-effects-or-
+> random-effects-the-mundlak-approach/
+. 
+. preserve
+
+. * get level_educ dummies and means
+. local NNums 38 39 40 41 42 43 44 45 46
+
+. foreach x of local NNums{
+  2.         display `x'
+  3.         
+.         quietly gen is_level_educ_`x'=1 if level_educ==`x'
+  4.         quietly replace is_level_educ_`x'=0 if is_level_educ_`x'==.
+  5.         
+.         bysort us_state: egen mean_level_educ_`x' = mean(is_level_educ_`x')
+  6.         display mean_level_educ_`x'
+  7. }
+38
+.07248018
+39
+.30011326
+40
+.18006796
+41
+.05209513
+42
+.06342016
+43
+.22536807
+44
+.0781427
+45
+.01132503
+46
+.01698754
 
 . 
+. * get hh_income dummies and means
+. local Nums 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+
+. foreach x of local Nums{
+  2.         display `x'
+  3.         
+.         quietly gen is_hh_income_`x'=1 if hh_income==`x'
+  4.         quietly replace is_hh_income_`x'=0 if is_hh_income_`x'==.
+  5.         
+.         bysort us_state: egen mean_hh_income_`x' = mean(is_hh_income_`x')
+  6.         display mean_hh_income_`x'
+  7. }
+1
+.00679502
+2
+.00339751
+3
+.01132503
+4
+.01812004
+5
+.01698754
+6
+.01698754
+7
+.03284258
+8
+.0396376
+9
+.05209513
+10
+.05322763
+11
+.09173273
+12
+.08267271
+13
+.11891279
+14
+.14835787
+15
+.17214043
+16
+.13476783
+
+. 
+. * get age means
+. bysort us_state: egen mean_age = mean(age)
+(1 missing value generated)
+
+. 
+. xtset us_state
+
+Panel variable: us_state (unbalanced)
+
+. 
+. quietly xtreg is_layoff age i.(level_educ hh_income) mean_age mean_level_educ_38 mean_level_educ_39 mean_level_educ_40 mean_level_educ_41 mean_level_educ_42 mean_level_educ_43 m
+> ean_level_educ_44 mean_level_educ_45 mean_level_educ_46 mean_hh_income_1 mean_hh_income_2 mean_hh_income_3 mean_hh_income_4 mean_hh_income_5 mean_hh_income_6 mean_hh_income_7 me
+> an_hh_income_8 mean_hh_income_9 mean_hh_income_10 mean_hh_income_11 mean_hh_income_12 mean_hh_income_13 mean_hh_income_14 mean_hh_income_15 mean_hh_income_16, vce(robust)
+
+. 
+. estimates store mundlak
+
+. 
+. * Test for zero mean of state variant coefficients, we can reject H0, thus assuming H1, implying that FE is the apropriate model
+. test mean_age mean_level_educ_38 mean_level_educ_39 mean_level_educ_40 mean_level_educ_41 mean_level_educ_42 mean_level_educ_43 mean_level_educ_44 mean_level_educ_45 mean_level_
+> educ_46 mean_hh_income_1 mean_hh_income_2 mean_hh_income_3 mean_hh_income_4 mean_hh_income_5 mean_hh_income_6 mean_hh_income_7 mean_hh_income_8 mean_hh_income_9 mean_hh_income_1
+> 0 mean_hh_income_11 mean_hh_income_12 mean_hh_income_13 mean_hh_income_14 mean_hh_income_15 mean_hh_income_16
+
+ ( 1)  mean_age = 0
+ ( 2)  mean_level_educ_38 = 0
+ ( 3)  mean_level_educ_39 = 0
+ ( 4)  mean_level_educ_40 = 0
+ ( 5)  mean_level_educ_41 = 0
+ ( 6)  mean_level_educ_42 = 0
+ ( 7)  mean_level_educ_43 = 0
+ ( 8)  mean_level_educ_44 = 0
+ ( 9)  mean_level_educ_45 = 0
+ (10)  o.mean_level_educ_46 = 0
+ (11)  mean_hh_income_1 = 0
+ (12)  mean_hh_income_2 = 0
+ (13)  mean_hh_income_3 = 0
+ (14)  mean_hh_income_4 = 0
+ (15)  mean_hh_income_5 = 0
+ (16)  mean_hh_income_6 = 0
+ (17)  mean_hh_income_7 = 0
+ (18)  mean_hh_income_8 = 0
+ (19)  mean_hh_income_9 = 0
+ (20)  mean_hh_income_10 = 0
+ (21)  mean_hh_income_11 = 0
+ (22)  mean_hh_income_12 = 0
+ (23)  mean_hh_income_13 = 0
+ (24)  mean_hh_income_14 = 0
+ (25)  mean_hh_income_15 = 0
+ (26)  o.mean_hh_income_16 = 0
+       Constraint 10 dropped
+       Constraint 26 dropped
+
+           chi2( 24) =  283.69
+         Prob > chi2 =    0.0000
+
+. 
+. restore
+
+. 
+. /*##########################################
+> Fixed effect models
+> ############################################*/
+. 
 . * Heteroskedacity
-. * As heteroskedacity exists we are clustering our regressions by naic_id, to co
-> rrect standar errors. We do not use vce(robust), as it assumes observations to 
-> be independent. An assumption that in a model of common intercepts by groups (s
-> tat and profession) is unlikely to hold.
+. * As heteroskedacity exists we are clustering our regressions by naic_id, to correct standar errors. We do not use vce(robust), as it assumes observations to be independent. An 
+> assumption that in a model of common intercepts by groups (stat and profession) is unlikely to hold.
 . 
 . 
 . *1: BASELINE MODEL
@@ -263,23 +379,23 @@ Prob > chi2 = 0.0019
 > ,absorb(us_state)
 (MWFE estimator converged in 1 iterations)
 
-HDFE Linear regression                            Number of obs   =     45,121
-Absorbing 1 HDFE group                            F(   5,  45065) =      27.73
+HDFE Linear regression                            Number of obs   =     45,117
+Absorbing 1 HDFE group                            F(   5,  45061) =      28.63
                                                   Prob > F        =     0.0000
-                                                  R-squared       =     0.0103
-                                                  Adj R-squared   =     0.0091
-                                                  Within R-sq.    =     0.0031
-                                                  Root MSE        =     0.2863
+                                                  R-squared       =     0.0100
+                                                  Adj R-squared   =     0.0088
+                                                  Within R-sq.    =     0.0032
+                                                  Root MSE        =     0.2852
 
 ------------------------------------------------------------------------------
    is_layoff | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-   is_female |   .0202105   .0027137     7.45   0.000     .0148916    .0255294
-      is_poc |   .0301253   .0039933     7.54   0.000     .0222985    .0379522
-    is_asian |   .0013633   .0055684     0.24   0.807    -.0095508    .0122773
-     is_hisp |  -.0619214   .0459704    -1.35   0.178     -.152024    .0281813
-   is_native |   .0450754   .0114042     3.95   0.000     .0227229    .0674278
-       _cons |   .0765642   .0019609    39.05   0.000     .0727207    .0804076
+   is_female |   .0201978   .0026997     7.48   0.000     .0149063    .0254893
+      is_poc |   .0333287    .003978     8.38   0.000     .0255318    .0411255
+    is_asian |  -.0019461     .00555    -0.35   0.726    -.0128243     .008932
+     is_hisp |  -.0563025   .0477088    -1.18   0.238    -.1498124    .0372075
+   is_native |    .026218   .0112909     2.32   0.020     .0040876    .0483484
+       _cons |   .0757001   .0019642    38.54   0.000     .0718504    .0795499
 ------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
@@ -302,14 +418,15 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28762452
+                e(ysd) =  .28643391
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .0910086
+              e(ymean) =  .0901739
 
 . 
 . *Heteroskedacity testing
@@ -325,25 +442,25 @@ added scalars:
 > vce(cluster $Cluster)
 (MWFE estimator converged in 5 iterations)
 
-HDFE Linear regression                            Number of obs   =     45,121
-Absorbing 2 HDFE groups                           F(   5,     39) =      46.22
+HDFE Linear regression                            Number of obs   =     45,117
+Absorbing 2 HDFE groups                           F(   5,     39) =      74.02
 Statistics robust to heteroskedasticity           Prob > F        =     0.0000
-                                                  R-squared       =     0.0414
-                                                  Adj R-squared   =     0.0394
+                                                  R-squared       =     0.0435
+                                                  Adj R-squared   =     0.0415
                                                   Within R-sq.    =     0.0029
-Number of clusters (naic_id) =         40         Root MSE        =     0.2819
+Number of clusters (naic_id) =         40         Root MSE        =     0.2804
 
                                (Std. err. adjusted for 40 clusters in naic_id)
 ------------------------------------------------------------------------------
              |               Robust
    is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-   is_female |   .0201192   .0025732     7.82   0.000     .0149144     .025324
-      is_poc |    .028955   .0030821     9.39   0.000     .0227208    .0351892
-    is_asian |   .0021344   .0024335     0.88   0.386    -.0027878    .0070566
-     is_hisp |  -.0505044   .0315819    -1.60   0.118    -.1143849    .0133761
-   is_native |   .0425661   .0123103     3.46   0.001     .0176662    .0674661
-       _cons |   .0767499   .0013461    57.02   0.000     .0740272    .0794725
+   is_female |   .0196422   .0020126     9.76   0.000     .0155713    .0237131
+      is_poc |    .032279   .0039919     8.09   0.000     .0242047    .0403534
+    is_asian |   .0004006   .0025485     0.16   0.876    -.0047543    .0055554
+     is_hisp |  -.0363631   .0333209    -1.09   0.282    -.1037609    .0310348
+   is_native |   .0254872    .009073     2.81   0.008     .0071354     .043839
+       _cons |   .0759508   .0008913    85.22   0.000      .074148    .0777535
 ------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
@@ -368,75 +485,74 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28762452
+                e(ysd) =  .28643391
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .0910086
+              e(ymean) =  .0901739
 
 . 
 . *3: MODEL
-. * adding age, education and income, as well as time
+. * Controll for age and Job
 . //quietly ///
 . reghdfe ///
 > $DependVar /// 
 > $InterestVars ///
-> $ControlContin i.$ControlCatEduc ///
+> $ControlContin ///
+> i.( $ConntrolCatJob ) ///
 > i.$TimeCat ///
 > [aweight=hh_weight] ///
 > ,absorb(us_state naic_id) ///
 > vce(cluster $Cluster)
 (MWFE estimator converged in 5 iterations)
 
-HDFE Linear regression                            Number of obs   =     45,121
-Absorbing 2 HDFE groups                           F(  25,     39) =    1219.79
+HDFE Linear regression                            Number of obs   =     45,117
+Absorbing 2 HDFE groups                           F(  19,     39) =     505.86
 Statistics robust to heteroskedasticity           Prob > F        =     0.0000
-                                                  R-squared       =     0.1004
-                                                  Adj R-squared   =     0.0981
-                                                  Within R-sq.    =     0.0642
-Number of clusters (naic_id) =         40         Root MSE        =     0.2732
+                                                  R-squared       =     0.0955
+                                                  Adj R-squared   =     0.0933
+                                                  Within R-sq.    =     0.0572
+Number of clusters (naic_id) =         40         Root MSE        =     0.2727
 
-                                 (Std. err. adjusted for 40 clusters in naic_id)
---------------------------------------------------------------------------------
-               |               Robust
-     is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
----------------+----------------------------------------------------------------
-     is_female |   .0193622   .0023092     8.38   0.000     .0146913     .024033
-        is_poc |   .0118978   .0029383     4.05   0.000     .0059546    .0178411
-      is_asian |   .0168009   .0030427     5.52   0.000     .0106464    .0229554
-       is_hisp |  -.0405317   .0346395    -1.17   0.249    -.1105967    .0295332
-     is_native |    .027308   .0117843     2.32   0.026      .003472     .051144
-           age |  -.0044634   .0008924    -5.00   0.000    -.0062685   -.0026583
-          age2 |   .0000468   9.61e-06     4.87   0.000     .0000274    .0000663
-               |
-     hh_income |
-5,000 TO 7,..  |  -.0551794   .0197161    -2.80   0.008    -.0950589   -.0152999
-7,500 TO 9,..  |   .0419199    .029196     1.44   0.159    -.0171346    .1009745
-10,000 TO 1..  |  -.0121611   .0234341    -0.52   0.607    -.0595611    .0352388
-12,500 TO 1..  |   -.062394    .021943    -2.84   0.007     -.106778   -.0180101
-15,000 TO 1..  |  -.0356136   .0213542    -1.67   0.103    -.0788065    .0075793
-20,000 TO 2..  |   -.046763   .0202534    -2.31   0.026    -.0877293   -.0057966
-25,000 TO 2..  |  -.0757404   .0213908    -3.54   0.001    -.1190075   -.0324734
-30,000 TO 3..  |  -.0631811   .0236473    -2.67   0.011    -.1110123   -.0153499
-35,000 TO 3..  |   -.081447   .0181767    -4.48   0.000    -.1182128   -.0446812
-40,000 TO 4..  |  -.0823524   .0198771    -4.14   0.000    -.1225576   -.0421471
-50,000 TO 5..  |  -.0926394   .0187561    -4.94   0.000    -.1305772   -.0547016
-60,000 TO 7..  |  -.1068442   .0200012    -5.34   0.000    -.1473006   -.0663879
-75,000 TO 9..  |  -.1112787   .0192847    -5.77   0.000    -.1502858   -.0722717
-100,000 TO ..  |  -.1266017   .0196145    -6.45   0.000    -.1662757   -.0869276
-150,000 OR ..  |  -.1316435   .0194924    -6.75   0.000    -.1710707   -.0922164
-               |
-    level_educ |   -.009039   .0008344   -10.83   0.000    -.0107268   -.0073512
-               |
-       hrmonth |
-            4  |   .1267063   .0146988     8.62   0.000     .0969752    .1564373
-            5  |   .1081838   .0131326     8.24   0.000     .0816206    .1347469
-               |
-         _cons |   .5741953   .0487651    11.77   0.000     .4755587     .672832
---------------------------------------------------------------------------------
+                                                                (Std. err. adjusted for 40 clusters in naic_id)
+---------------------------------------------------------------------------------------------------------------
+                                              |               Robust
+                                    is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+----------------------------------------------+----------------------------------------------------------------
+                                    is_female |   .0189757   .0015662    12.12   0.000     .0158077    .0221437
+                                       is_poc |   .0260503   .0042574     6.12   0.000     .0174389    .0346616
+                                     is_asian |   .0181442   .0029742     6.10   0.000     .0121284      .02416
+                                      is_hisp |  -.0335079     .02986    -1.12   0.269    -.0939055    .0268897
+                                    is_native |   .0125775    .010935     1.15   0.257    -.0095406    .0346957
+                                          age |   -.003853   .0006308    -6.11   0.000    -.0051289   -.0025772
+                                         age2 |   .0000381   7.04e-06     5.41   0.000     .0000238    .0000523
+                                              |
+                                   level_educ |
+     high school grad-diploma or equiv (ged)  |   -.014407   .0107295    -1.34   0.187    -.0361095    .0072954
+                  some college but no degree  |  -.0129821   .0107645    -1.21   0.235    -.0347554    .0087911
+    associate degree-occupational/vocational  |  -.0385288   .0091288    -4.22   0.000    -.0569935    -.020064
+           associate degree-academic program  |  -.0293179   .0119235    -2.46   0.018    -.0534355   -.0052004
+          bachelor's degree (ex: ba, ab, bs)  |  -.0566671   .0103443    -5.48   0.000    -.0775904   -.0357438
+master's degree (ex: ma, ms, meng, med, msw)  |  -.0782209    .009741    -8.03   0.000    -.0979239   -.0585179
+  professional school deg (ex: md, dds, dvm)  |  -.0725957   .0093112    -7.80   0.000    -.0914293   -.0537621
+             doctorate degree (ex: phd, edd)  |  -.0988852   .0087722   -11.27   0.000    -.1166287   -.0811417
+                                              |
+                                contract_type |
+                                   part-time  |   .0308343     .01341     2.30   0.027     .0037101    .0579585
+                                              |
+                                  is_more1job |
+                                  1 job only  |   .0774662   .0091466     8.47   0.000     .0589654     .095967
+                                              |
+                                      hrmonth |
+                                         Apr  |   .1248506   .0154962     8.06   0.000     .0935066    .1561947
+                                         Mai  |   .1025775   .0133796     7.67   0.000     .0755148    .1296403
+                                              |
+                                        _cons |   .0509356   .0279881     1.82   0.076    -.0056758    .1075469
+---------------------------------------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
 -----------------------------------------------------+
@@ -447,6 +563,7 @@ Absorbed degrees of freedom:
 -----------------------------------------------------+
 * = FE nested within cluster; treated as redundant for DoF computation
 
+. 
 . 
 . eststo M3
 
@@ -460,101 +577,109 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
+. quietly estadd local CLU "Yes", replace
+
+. quietly estadd ysumm, replace
+
 . 
-. estadd ysumm, replace
-
-added scalars:
-                e(ysd) =  .28762452
-               e(ymax) =  1
-               e(ymin) =  0
-              e(ymean) =  .0910086
-
 . 
 . *4: Model
-. * adding control variables of family status and job related information
+. * adding control variables realting to wealth and family
 . //quietly ///
 . reghdfe ///
-> $DependVar /// 
-> $InterestVars ///
-> $ControlContin i.($ControlCatEduc $ConntrolCatJob $ControlCatFam) ///
+> $DependVar $InterestVars ///
+> $ControlContin ///
+> i.( $ConntrolCatJob $ControlCatWealth $ControlCatFam ) ///
 > i.$TimeCat ///
 > [aweight=hh_weight] ///
 > ,absorb(us_state naic_id) ///
 > vce(cluster $Cluster)
 (MWFE estimator converged in 5 iterations)
-warning: missing F statistic; dropped variables due to collinearity or too few cl
-> usters
+warning: missing F statistic; dropped variables due to collinearity or too few clusters
 
-HDFE Linear regression                            Number of obs   =     44,970
-Absorbing 2 HDFE groups                           F(  40,     39) =          .
+HDFE Linear regression                            Number of obs   =     45,117
+Absorbing 2 HDFE groups                           F(  49,     39) =          .
 Statistics robust to heteroskedasticity           Prob > F        =          .
-                                                  R-squared       =     0.1063
-                                                  Adj R-squared   =     0.1037
-                                                  Within R-sq.    =     0.0702
-Number of clusters (naic_id) =         40         Root MSE        =     0.2726
+                                                  R-squared       =     0.1062
+                                                  Adj R-squared   =     0.1035
+                                                  Within R-sq.    =     0.0683
+Number of clusters (naic_id) =         40         Root MSE        =     0.2712
 
-                                 (Std. err. adjusted for 40 clusters in naic_id)
---------------------------------------------------------------------------------
-               |               Robust
-     is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
----------------+----------------------------------------------------------------
-     is_female |   .0172656   .0022793     7.58   0.000     .0126554    .0218758
-        is_poc |   .0110819   .0030697     3.61   0.001      .004873    .0172909
-      is_asian |   .0173142   .0030094     5.75   0.000     .0112272    .0234012
-       is_hisp |  -.0426128   .0330122    -1.29   0.204    -.1093862    .0241606
-     is_native |   .0251644   .0118431     2.12   0.040     .0012094    .0491194
-           age |  -.0031824   .0006543    -4.86   0.000    -.0045059   -.0018589
-          age2 |   .0000349   6.69e-06     5.22   0.000     .0000214    .0000485
-               |
-     hh_income |
-5,000 TO 7,..  |  -.0585289   .0198015    -2.96   0.005    -.0985812   -.0184767
-7,500 TO 9,..  |   .0391058    .028841     1.36   0.183    -.0192306    .0974421
-10,000 TO 1..  |  -.0149132   .0239154    -0.62   0.537    -.0632867    .0334603
-12,500 TO 1..  |  -.0621457   .0216845    -2.87   0.007    -.1060069   -.0182846
-15,000 TO 1..  |  -.0369036   .0218876    -1.69   0.100    -.0811755    .0073683
-20,000 TO 2..  |  -.0454835   .0205388    -2.21   0.033     -.087027   -.0039399
-25,000 TO 2..  |  -.0724132   .0219604    -3.30   0.002    -.1168323    -.027994
-30,000 TO 3..  |  -.0610018   .0244771    -2.49   0.017    -.1105114   -.0114922
-35,000 TO 3..  |  -.0802842   .0184956    -4.34   0.000    -.1176951   -.0428733
-40,000 TO 4..  |  -.0790069   .0200769    -3.94   0.000    -.1196162   -.0383976
-50,000 TO 5..  |  -.0887234   .0191151    -4.64   0.000    -.1273875   -.0500594
-60,000 TO 7..  |  -.1033424   .0207157    -4.99   0.000    -.1452439    -.061441
-75,000 TO 9..  |  -.1064941   .0197306    -5.40   0.000     -.146403   -.0665852
-100,000 TO ..  |  -.1211806    .019939    -6.08   0.000     -.161511   -.0808502
-150,000 OR ..  |  -.1248621   .0197378    -6.33   0.000    -.1647856   -.0849387
-               |
-    level_educ |
-HIGH SCHOO..)  |   .0013802   .0091982     0.15   0.881     -.017225    .0199854
-SOME COLLEG..  |   .0019462   .0083145     0.23   0.816    -.0148715    .0187639
-ASSOCIATE D..  |    -.00292   .0080603    -0.36   0.719    -.0192234    .0133835
-ASSOCIATE D..  |  -.0107327   .0083874    -1.28   0.208    -.0276978    .0062324
-BACHELOR'S..)  |   -.032125   .0093818    -3.42   0.001    -.0511016   -.0131485
-MASTER'S D..)  |  -.0418605   .0098481    -4.25   0.000    -.0617802   -.0219409
-PROFESSION..)  |  -.0411734   .0088929    -4.63   0.000    -.0591611   -.0231858
-DOCTORATE ..)  |  -.0672675   .0084172    -7.99   0.000    -.0842929    -.050242
-               |
- owns_business |
-           NO  |   .0282265   .0059381     4.75   0.000     .0162157    .0402374
-               |
- contract_type |
-PART TIME L..  |   .0290208   .0099522     2.92   0.006     .0088906    .0491511
-               |
-   is_more1job |
-           NO  |   .0692204   .0067267    10.29   0.000     .0556143    .0828264
-               |
-       marista |
-MARRIED - S..  |   .0118995   .0087257     1.36   0.180      -.00575    .0295489
-      WIDOWED  |  -.0125608   .0059092    -2.13   0.040    -.0245132   -.0006084
-     DIVORCED  |  -.0092204    .003513    -2.62   0.012    -.0163262   -.0021146
-    SEPARATED  |   .0144007   .0085078     1.69   0.098     -.002808    .0316095
-NEVER MARRIED  |   .0052791   .0020391     2.59   0.013     .0011546    .0094036
-               |
-       hrmonth |
-            4  |   .1262722   .0145988     8.65   0.000     .0967433    .1558011
-            5  |   .1085488   .0130101     8.34   0.000     .0822334    .1348643
-               |
-         _cons |   .0877283   .0318958     2.75   0.009     .0232129    .1522438
---------------------------------------------------------------------------------
+                                                                        (Std. err. adjusted for 40 clusters in naic_id)
+-----------------------------------------------------------------------------------------------------------------------
+                                                      |               Robust
+                                            is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------------------------------------------+----------------------------------------------------------------
+                                            is_female |   .0166038   .0015417    10.77   0.000     .0134854    .0197223
+                                               is_poc |   .0138332   .0046359     2.98   0.005     .0044562    .0232101
+                                             is_asian |   .0141058   .0037004     3.81   0.000     .0066209    .0215906
+                                              is_hisp |  -.0410426    .032278    -1.27   0.211    -.1063309    .0242458
+                                            is_native |   .0068627   .0110969     0.62   0.540    -.0155828    .0293083
+                                                  age |  -.0028018   .0006033    -4.64   0.000    -.0040221   -.0015815
+                                                 age2 |   .0000303   6.18e-06     4.90   0.000     .0000178    .0000428
+                                                      |
+                                           level_educ |
+             high school grad-diploma or equiv (ged)  |  -.0070967   .0085221    -0.83   0.410    -.0243341    .0101408
+                          some college but no degree  |   .0010605   .0081358     0.13   0.897    -.0153957    .0175167
+            associate degree-occupational/vocational  |  -.0216938    .006776    -3.20   0.003    -.0353996   -.0079879
+                   associate degree-academic program  |   -.012063   .0090307    -1.34   0.189    -.0303294    .0062034
+                  bachelor's degree (ex: ba, ab, bs)  |  -.0320335   .0081318    -3.94   0.000    -.0484816   -.0155853
+        master's degree (ex: ma, ms, meng, med, msw)  |  -.0477153   .0081686    -5.84   0.000    -.0642378   -.0311927
+          professional school deg (ex: md, dds, dvm)  |  -.0366371   .0078801    -4.65   0.000    -.0525761   -.0206981
+                     doctorate degree (ex: phd, edd)  |  -.0659128   .0073789    -8.93   0.000    -.0808381   -.0509876
+                                                      |
+                                        contract_type |
+                                           part-time  |   .0263566   .0121391     2.17   0.036      .001803    .0509103
+                                                      |
+                                          is_more1job |
+                                          1 job only  |   .0698254   .0079501     8.78   0.000     .0537449     .085906
+                                                      |
+                                         housing_kind |
+               hu in nontransient hotel, motel, etc.  |   .0137309   .0510741     0.27   0.789    -.0895761     .117038
+              hu permanent in transient hotel, motel  |   -.064666   .0799758    -0.81   0.424    -.2264323    .0971003
+                                 hu in rooming house  |   .1827301   .0811802     2.25   0.030     .0185277    .3469325
+        mobile home or trailer w/no perm. room added  |  -.0247863   .0059755    -4.15   0.000    -.0368729   -.0126998
+mobile home or trailer w/1 or more perm. rooms added  |  -.0013406   .0116461    -0.12   0.909     -.024897    .0222158
+                              hu not specified above  |  -.1898285   .0762848    -2.49   0.017    -.3441291   -.0355279
+                   unoccupied tent site or trlr site  |  -.1518853   .0071675   -21.19   0.000    -.1663831   -.1373876
+                      other unit not specified above  |     -.1059   .0099954   -10.59   0.000    -.1261176   -.0856824
+                                                      |
+                                            hh_income |
+                                   Income: 5 > < 7.5  |   -.062744   .0332821    -1.89   0.067    -.1300634    .0045755
+                                  Income: 7.5 > < 10  |   .0323185   .0199814     1.62   0.114    -.0080977    .0727347
+                                 Income: 10 > < 12.5  |  -.0234135   .0242583    -0.97   0.340    -.0724805    .0256535
+                                 Income: 12.5 > < 15  |  -.0589124   .0142698    -4.13   0.000    -.0877759    -.030049
+                                   Income: 15 > < 20  |  -.0586299   .0142465    -4.12   0.000    -.0874462   -.0298136
+                                   Income: 20 > < 25  |  -.0732958   .0165786    -4.42   0.000    -.1068292   -.0397624
+                                   Income: 25 > < 30  |  -.0822695   .0164503    -5.00   0.000    -.1155434   -.0489955
+                                   Income: 30 > < 35  |  -.0658706   .0128581    -5.12   0.000    -.0918785   -.0398626
+                                   Income: 35 > < 40  |  -.0919307   .0141474    -6.50   0.000    -.1205464   -.0633149
+                                   Income: 40 > < 50  |  -.0927071   .0129293    -7.17   0.000    -.1188591   -.0665551
+                                   Income: 50 > < 60  |  -.0975511   .0192989    -5.05   0.000    -.1365869   -.0585153
+                                   Income: 60 > < 75  |  -.1091435   .0122669    -8.90   0.000    -.1339556   -.0843314
+                                  Income: 75 > < 100  |  -.1203489   .0129708    -9.28   0.000    -.1465848   -.0941131
+                                 Income: 100 > < 150  |  -.1321003   .0161452    -8.18   0.000    -.1647571   -.0994436
+                                       Income: 150 >  |  -.1355334   .0133262   -10.17   0.000    -.1624883   -.1085786
+                                                      |
+                                        owns_business |
+                               does not own business  |   .0274036   .0063673     4.30   0.000     .0145246    .0402826
+                                                      |
+                                              marista |
+                             married - spouse absent  |   .0067339   .0085617     0.79   0.436    -.0105838    .0240515
+                                             widowed  |  -.0236435   .0042176    -5.61   0.000    -.0321743   -.0151126
+                                            divorced  |   -.008607   .0029906    -2.88   0.006     -.014656    -.002558
+                                           separated  |  -.0049304   .0086245    -0.57   0.571    -.0223752    .0125143
+                                       never married  |   .0058289   .0031291     1.86   0.070    -.0005003    .0121581
+                                                      |
+                                             is_citiz |
+                                   no us citizenship  |   .0056017   .0069979     0.80   0.428    -.0085528    .0197563
+                                                      |
+                                              hrmonth |
+                                                 Apr  |   .1258139   .0155228     8.11   0.000     .0944161    .1572116
+                                                 Mai  |   .1046785   .0137887     7.59   0.000     .0767883    .1325687
+                                                      |
+                                                _cons |   .0979272   .0320896     3.05   0.004     .0330198    .1628346
+-----------------------------------------------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
 -----------------------------------------------------+
@@ -578,14 +703,15 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28798123
+                e(ysd) =  .28643391
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .09125967
+              e(ymean) =  .0901739
 
 . 
 . 
@@ -593,91 +719,80 @@ added scalars:
 . * adding covid cases and time dimension
 . //quietly ///
 . reghdfe ///
-> $DependVar /// 
-> $InterestVars ///
+> $DependVar $InterestVars ///
 > $ControlContin ///
-> i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+> i.$ConntrolCatJob i.$ControlCatWealth i.$ControlCatFam ///
 > $ControlCovid ///
 > i.$TimeCat ///
 > [aweight=hh_weight] ///
 > ,absorb(us_state naic_id) ///
 > vce(cluster $Cluster)
 (MWFE estimator converged in 5 iterations)
-warning: missing F statistic; dropped variables due to collinearity or too few cl
-> usters
 
-HDFE Linear regression                            Number of obs   =     44,970
-Absorbing 2 HDFE groups                           F(  42,     39) =          .
-Statistics robust to heteroskedasticity           Prob > F        =          .
-                                                  R-squared       =     0.1068
-                                                  Adj R-squared   =     0.1042
-                                                  Within R-sq.    =     0.0707
-Number of clusters (naic_id) =         40         Root MSE        =     0.2726
+HDFE Linear regression                            Number of obs   =     45,117
+Absorbing 2 HDFE groups                           F(  37,     39) =  165768.45
+Statistics robust to heteroskedasticity           Prob > F        =     0.0000
+                                                  R-squared       =     0.1057
+                                                  Adj R-squared   =     0.1032
+                                                  Within R-sq.    =     0.0678
+Number of clusters (naic_id) =         40         Root MSE        =     0.2713
 
-                                 (Std. err. adjusted for 40 clusters in naic_id)
---------------------------------------------------------------------------------
-               |               Robust
-     is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
----------------+----------------------------------------------------------------
-     is_female |   .0171173   .0022861     7.49   0.000     .0124932    .0217415
-        is_poc |   .0111432    .003066     3.63   0.001     .0049415    .0173448
-      is_asian |    .017509   .0030371     5.77   0.000     .0113659    .0236521
-       is_hisp |  -.0418921   .0335283    -1.25   0.219    -.1097096    .0259254
-     is_native |   .0249116   .0118025     2.11   0.041     .0010389    .0487843
-           age |   -.003146   .0006513    -4.83   0.000    -.0044633   -.0018287
-          age2 |   .0000346   6.64e-06     5.20   0.000     .0000211     .000048
-               |
-     hh_income |
-5,000 TO 7,..  |  -.0577354    .019935    -2.90   0.006    -.0980577    -.017413
-7,500 TO 9,..  |   .0396022   .0288577     1.37   0.178    -.0187679    .0979723
-10,000 TO 1..  |  -.0145253   .0238422    -0.61   0.546    -.0627506       .0337
-12,500 TO 1..  |   -.061503    .021525    -2.86   0.007    -.1050414   -.0179646
-15,000 TO 1..  |  -.0365129   .0218107    -1.67   0.102    -.0806292    .0076033
-20,000 TO 2..  |  -.0451738   .0204359    -2.21   0.033    -.0865094   -.0038383
-25,000 TO 2..  |  -.0718982   .0216424    -3.32   0.002    -.1156741   -.0281223
-30,000 TO 3..  |  -.0605674    .024201    -2.50   0.017    -.1095185   -.0116163
-35,000 TO 3..  |  -.0800506   .0183512    -4.36   0.000    -.1171693   -.0429318
-40,000 TO 4..  |  -.0786527   .0199907    -3.93   0.000    -.1190877   -.0382176
-50,000 TO 5..  |  -.0884674   .0190165    -4.65   0.000    -.1269319   -.0500029
-60,000 TO 7..  |  -.1028292   .0205165    -5.01   0.000    -.1443279   -.0613306
-75,000 TO 9..  |   -.106265   .0195565    -5.43   0.000    -.1458217   -.0667084
-100,000 TO ..  |  -.1207662   .0198082    -6.10   0.000     -.160832   -.0807003
-150,000 OR ..  |  -.1245051   .0196047    -6.35   0.000    -.1641594   -.0848508
-               |
-    level_educ |
-HIGH SCHOO..)  |   .0015401   .0091021     0.17   0.867    -.0168706    .0199508
-SOME COLLEG..  |   .0019107   .0082511     0.23   0.818    -.0147788    .0186002
-ASSOCIATE D..  |  -.0029639   .0080282    -0.37   0.714    -.0192024    .0132746
-ASSOCIATE D..  |  -.0107613   .0083732    -1.29   0.206    -.0276977    .0061751
-BACHELOR'S..)  |  -.0320673   .0093277    -3.44   0.001    -.0509344   -.0132002
-MASTER'S D..)  |  -.0419422   .0098074    -4.28   0.000    -.0617795   -.0221048
-PROFESSION..)  |  -.0411884   .0087868    -4.69   0.000    -.0589614   -.0234155
-DOCTORATE ..)  |  -.0671636   .0082661    -8.13   0.000    -.0838833   -.0504439
-               |
-       marista |
-MARRIED - S..  |   .0116374   .0087198     1.33   0.190    -.0060002    .0292749
-      WIDOWED  |  -.0122085   .0058705    -2.08   0.044    -.0240826   -.0003343
-     DIVORCED  |  -.0092003    .003536    -2.60   0.013    -.0163525   -.0020481
-    SEPARATED  |   .0144521   .0084159     1.72   0.094    -.0025706    .0314749
-NEVER MARRIED  |   .0053256   .0020052     2.66   0.011     .0012697    .0093815
-               |
- owns_business |
-           NO  |    .028022   .0059164     4.74   0.000      .016055    .0399891
-               |
- contract_type |
-PART TIME L..  |   .0293097   .0098781     2.97   0.005     .0093294    .0492899
-               |
-   is_more1job |
-           NO  |   .0690438   .0066573    10.37   0.000     .0555781    .0825095
-   new_deathpm |   .0006797   .0001198     5.67   0.000     .0004373    .0009221
-   new_casespm |   -.000251   .0006106    -0.41   0.683     -.001486     .000984
-               |
-       hrmonth |
-            4  |   .1232123   .0130127     9.47   0.000     .0968916    .1495331
-            5  |   .0960903   .0113445     8.47   0.000     .0731438    .1190368
-               |
-         _cons |   .0870646   .0321588     2.71   0.010     .0220174    .1521118
---------------------------------------------------------------------------------
+                                                                        (Std. err. adjusted for 40 clusters in naic_id)
+-----------------------------------------------------------------------------------------------------------------------
+                                                      |               Robust
+                                            is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------------------------------------------+----------------------------------------------------------------
+                                            is_female |   .0164181   .0015518    10.58   0.000     .0132793     .019557
+                                               is_poc |   .0139691   .0046438     3.01   0.005     .0045762     .023362
+                                             is_asian |   .0144481   .0034893     4.14   0.000     .0073903    .0215059
+                                              is_hisp |  -.0460174   .0342745    -1.34   0.187     -.115344    .0233093
+                                            is_native |   .0068341   .0109924     0.62   0.538    -.0154002    .0290683
+                                                  age |  -.0027824   .0005964    -4.67   0.000    -.0039886   -.0015761
+                                                 age2 |   .0000301   6.13e-06     4.91   0.000     .0000177    .0000425
+                                                      |
+                                           level_educ |
+             high school grad-diploma or equiv (ged)  |  -.0062653   .0084613    -0.74   0.463    -.0233799    .0108494
+                          some college but no degree  |    .001406   .0082448     0.17   0.865    -.0152707    .0180827
+            associate degree-occupational/vocational  |  -.0213237    .006865    -3.11   0.004    -.0352094    -.007438
+                   associate degree-academic program  |  -.0117304   .0091492    -1.28   0.207    -.0302364    .0067756
+                  bachelor's degree (ex: ba, ab, bs)  |  -.0316709    .008321    -3.81   0.000    -.0485016   -.0148402
+        master's degree (ex: ma, ms, meng, med, msw)  |  -.0476769   .0084193    -5.66   0.000    -.0647066   -.0306472
+          professional school deg (ex: md, dds, dvm)  |  -.0363645   .0080294    -4.53   0.000    -.0526054   -.0201236
+                     doctorate degree (ex: phd, edd)  |  -.0656284   .0075814    -8.66   0.000    -.0809633   -.0502935
+                                                      |
+                                        contract_type |   .0263848   .0120376     2.19   0.034     .0020366    .0507331
+                                          is_more1job |   .0693618   .0079453     8.73   0.000      .053291    .0854327
+                                                      |
+                                         housing_kind |
+               hu in nontransient hotel, motel, etc.  |   .0122434   .0490995     0.25   0.804    -.0870698    .1115566
+              hu permanent in transient hotel, motel  |  -.0583377    .080337    -0.73   0.472    -.2208346    .1041592
+                                 hu in rooming house  |   .1872566   .0811802     2.31   0.026     .0230542    .3514589
+        mobile home or trailer w/no perm. room added  |  -.0245793    .005793    -4.24   0.000    -.0362968   -.0128618
+mobile home or trailer w/1 or more perm. rooms added  |  -.0017529   .0117623    -0.15   0.882    -.0255444    .0220386
+                              hu not specified above  |  -.1831415   .0733702    -2.50   0.017    -.3315468   -.0347362
+                   unoccupied tent site or trlr site  |  -.1396014   .0062941   -22.18   0.000    -.1523325   -.1268704
+                      other unit not specified above  |  -.1045678   .0091751   -11.40   0.000    -.1231261   -.0860094
+                                                      |
+                                            hh_income |  -.0083485   .0002808   -29.73   0.000    -.0089164   -.0077806
+                                        owns_business |   .0271864   .0064307     4.23   0.000      .014179    .0401938
+                                                      |
+                                              marista |
+                             married - spouse absent  |   .0079064   .0082942     0.95   0.346    -.0088702     .024683
+                                             widowed  |  -.0229937   .0042524    -5.41   0.000     -.031595   -.0143923
+                                            divorced  |  -.0084207    .003018    -2.79   0.008    -.0145253   -.0023162
+                                           separated  |  -.0054319   .0088173    -0.62   0.541    -.0232666    .0124028
+                                       never married  |   .0062518   .0030803     2.03   0.049     .0000213    .0124823
+                                                      |
+                                             is_citiz |   .0053742      .0069     0.78   0.441    -.0085824    .0193307
+                                          new_deathpm |   .0004413    .000119     3.71   0.001     .0002007     .000682
+                                          new_casespm |   .0004148   .0006041     0.69   0.496    -.0008071    .0016366
+                                                      |
+                                              hrmonth |
+                                                 Apr  |   .1203578   .0127394     9.45   0.000     .0945898    .1461257
+                                                 Mai  |   .0934327   .0105395     8.86   0.000     .0721145    .1147509
+                                                      |
+                                                _cons |  -.0291416   .0317738    -0.92   0.365    -.0934102    .0351271
+-----------------------------------------------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
 -----------------------------------------------------+
@@ -701,97 +816,87 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28798123
+                e(ysd) =  .28643391
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .09125967
+              e(ymean) =  .0901739
 
 . 
 . *6: Model
-. * we believe there is a fixed effect of state&time, implying that something (po
-> licy) 
+. * we believe there is a fixed effect of state&time, implying that something (policy) 
 . * varies over time, and that this needs to be accounted for
-. * adding controls
 . //quietly ///
 . reghdfe ///
-> $DependVar /// 
-> $InterestVars ///
+> $DependVar $InterestVars ///
 > $ControlContin ///
-> i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+> i.$ConntrolCatJob i.$ControlCatWealth i.$ControlCatFam ///
 > [aweight=hh_weight] ///
 > ,absorb(us_state#hrmonth naic_id) ///
 > vce(cluster $Cluster)
 (MWFE estimator converged in 5 iterations)
 
-HDFE Linear regression                            Number of obs   =     44,970
-Absorbing 2 HDFE groups                           F(  38,     39) =   33022.13
+HDFE Linear regression                            Number of obs   =     45,117
+Absorbing 2 HDFE groups                           F(  33,     39) =    2644.59
 Statistics robust to heteroskedasticity           Prob > F        =     0.0000
-                                                  R-squared       =     0.1119
-                                                  Adj R-squared   =     0.1073
-                                                  Within R-sq.    =     0.0334
-Number of clusters (naic_id) =         40         Root MSE        =     0.2721
+                                                  R-squared       =     0.1106
+                                                  Adj R-squared   =     0.1062
+                                                  Within R-sq.    =     0.0311
+Number of clusters (naic_id) =         40         Root MSE        =     0.2708
 
-                                 (Std. err. adjusted for 40 clusters in naic_id)
---------------------------------------------------------------------------------
-               |               Robust
-     is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
----------------+----------------------------------------------------------------
-     is_female |   .0170851   .0023036     7.42   0.000     .0124257    .0217446
-        is_poc |   .0114022   .0030217     3.77   0.001     .0052901    .0175142
-      is_asian |   .0183759   .0031321     5.87   0.000     .0120406    .0247113
-       is_hisp |  -.0318428   .0350274    -0.91   0.369    -.1026923    .0390067
-     is_native |   .0263747    .011398     2.31   0.026       .00332    .0494294
-           age |  -.0031438   .0006731    -4.67   0.000    -.0045052   -.0017825
-          age2 |   .0000347   6.96e-06     4.99   0.000     .0000207    .0000488
-               |
-     hh_income |
-5,000 TO 7,..  |  -.0556518   .0204597    -2.72   0.010    -.0970355   -.0142681
-7,500 TO 9,..  |   .0395049   .0281606     1.40   0.169    -.0174553    .0964651
-10,000 TO 1..  |  -.0114185   .0247695    -0.46   0.647    -.0615195    .0386824
-12,500 TO 1..  |  -.0591863   .0206389    -2.87   0.007    -.1009324   -.0174402
-15,000 TO 1..  |  -.0339556   .0227716    -1.49   0.144    -.0800156    .0121044
-20,000 TO 2..  |    -.04348   .0204915    -2.12   0.040     -.084928    -.002032
-25,000 TO 2..  |  -.0699711   .0212514    -3.29   0.002    -.1129561    -.026986
-30,000 TO 3..  |   -.058505   .0235863    -2.48   0.018    -.1062127   -.0107972
-35,000 TO 3..  |  -.0775848   .0183182    -4.24   0.000     -.114637   -.0405327
-40,000 TO 4..  |  -.0770177   .0202928    -3.80   0.001    -.1180637   -.0359717
-50,000 TO 5..  |  -.0864579    .019422    -4.45   0.000    -.1257426   -.0471731
-60,000 TO 7..  |  -.1011501   .0202847    -4.99   0.000    -.1421797   -.0601204
-75,000 TO 9..  |  -.1043261   .0196121    -5.32   0.000    -.1439953   -.0646568
-100,000 TO ..  |  -.1191345   .0200251    -5.95   0.000     -.159639   -.0786299
-150,000 OR ..  |  -.1226164   .0195302    -6.28   0.000      -.16212   -.0831128
-               |
-    level_educ |
-HIGH SCHOO..)  |   .0011449   .0094664     0.12   0.904    -.0180028    .0202926
-SOME COLLEG..  |   .0015759   .0086861     0.18   0.857    -.0159935    .0191453
-ASSOCIATE D..  |  -.0030398    .008291    -0.37   0.716    -.0198099    .0137302
-ASSOCIATE D..  |  -.0104273   .0086865    -1.20   0.237    -.0279974    .0071427
-BACHELOR'S..)  |  -.0322266   .0097816    -3.29   0.002    -.0520118   -.0124415
-MASTER'S D..)  |  -.0418976   .0101893    -4.11   0.000    -.0625074   -.0212877
-PROFESSION..)  |   -.040666   .0098295    -4.14   0.000    -.0605481    -.020784
-DOCTORATE ..)  |  -.0683936   .0091352    -7.49   0.000    -.0868713    -.049916
-               |
-       marista |
-MARRIED - S..  |   .0106293   .0086777     1.22   0.228    -.0069231    .0281816
-      WIDOWED  |  -.0118442   .0060132    -1.97   0.056     -.024007    .0003186
-     DIVORCED  |  -.0093525   .0037985    -2.46   0.018    -.0170357   -.0016693
-    SEPARATED  |   .0152827   .0079873     1.91   0.063    -.0008732    .0314387
-NEVER MARRIED  |   .0053084   .0019718     2.69   0.010     .0013201    .0092967
-               |
- owns_business |
-           NO  |   .0275979   .0061058     4.52   0.000     .0152478    .0399479
-               |
- contract_type |
-PART TIME L..  |   .0296207   .0099035     2.99   0.005      .009589    .0496523
-               |
-   is_more1job |
-           NO  |   .0689604   .0069184     9.97   0.000     .0549667    .0829541
-         _cons |   .1579637   .0277313     5.70   0.000     .1018718    .2140556
---------------------------------------------------------------------------------
+                                                                        (Std. err. adjusted for 40 clusters in naic_id)
+-----------------------------------------------------------------------------------------------------------------------
+                                                      |               Robust
+                                            is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------------------------------------------+----------------------------------------------------------------
+                                            is_female |   .0161331   .0015918    10.14   0.000     .0129135    .0193528
+                                               is_poc |   .0144356   .0044948     3.21   0.003      .005344    .0235271
+                                             is_asian |   .0146589   .0034359     4.27   0.000     .0077091    .0216087
+                                              is_hisp |  -.0434736   .0392963    -1.11   0.275    -.1229578    .0360105
+                                            is_native |   .0066025    .010688     0.62   0.540    -.0150159    .0282209
+                                                  age |  -.0027768   .0005735    -4.84   0.000    -.0039367   -.0016168
+                                                 age2 |   .0000302   5.95e-06     5.07   0.000     .0000182    .0000422
+                                                      |
+                                           level_educ |
+             high school grad-diploma or equiv (ged)  |  -.0062867   .0084879    -0.74   0.463    -.0234551    .0108818
+                          some college but no degree  |   .0011834   .0080551     0.15   0.884    -.0151096    .0174764
+            associate degree-occupational/vocational  |  -.0210844   .0067596    -3.12   0.003     -.034757   -.0074117
+                   associate degree-academic program  |  -.0113173   .0093607    -1.21   0.234    -.0302512    .0076166
+                  bachelor's degree (ex: ba, ab, bs)  |  -.0315565   .0083546    -3.78   0.001    -.0484552   -.0146577
+        master's degree (ex: ma, ms, meng, med, msw)  |  -.0473756   .0085001    -5.57   0.000    -.0645687   -.0301824
+          professional school deg (ex: md, dds, dvm)  |  -.0357845   .0080777    -4.43   0.000    -.0521232   -.0194458
+                     doctorate degree (ex: phd, edd)  |  -.0654474   .0074605    -8.77   0.000    -.0805378    -.050357
+                                                      |
+                                        contract_type |   .0268411   .0118493     2.27   0.029     .0028737    .0508086
+                                          is_more1job |   .0695579   .0080742     8.61   0.000     .0532262    .0858895
+                                                      |
+                                         housing_kind |
+               hu in nontransient hotel, motel, etc.  |    .009529   .0501517     0.19   0.850    -.0919125    .1109705
+              hu permanent in transient hotel, motel  |  -.0583793   .0873832    -0.67   0.508    -.2351286      .11837
+                                 hu in rooming house  |   .1903359   .0829752     2.29   0.027     .0225028     .358169
+        mobile home or trailer w/no perm. room added  |  -.0233241     .00548    -4.26   0.000    -.0344085   -.0122397
+mobile home or trailer w/1 or more perm. rooms added  |  -.0042629   .0115355    -0.37   0.714    -.0275957      .01907
+                              hu not specified above  |  -.1778808   .0658848    -2.70   0.010    -.3111454   -.0446163
+                   unoccupied tent site or trlr site  |  -.1304441   .0073822   -17.67   0.000    -.1453759   -.1155122
+                      other unit not specified above  |  -.1040794   .0126579    -8.22   0.000    -.1296823   -.0784764
+                                                      |
+                                            hh_income |  -.0083642   .0002842   -29.43   0.000    -.0089392   -.0077893
+                                        owns_business |   .0265611   .0065497     4.06   0.000     .0133131    .0398092
+                                                      |
+                                              marista |
+                             married - spouse absent  |   .0085514     .00776     1.10   0.277    -.0071446    .0242474
+                                             widowed  |  -.0226932    .004044    -5.61   0.000     -.030873   -.0145135
+                                            divorced  |  -.0083729   .0030952    -2.71   0.010    -.0146335   -.0021123
+                                           separated  |  -.0050325   .0088012    -0.57   0.571    -.0228347    .0127697
+                                       never married  |   .0065966    .003063     2.15   0.038     .0004011    .0127921
+                                                      |
+                                             is_citiz |   .0053079   .0070367     0.75   0.455    -.0089252    .0195411
+                                                _cons |   .0428429   .0254414     1.68   0.100    -.0086173     .094303
+-----------------------------------------------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
 ------------------------------------------------------------+
@@ -815,14 +920,15 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28798123
+                e(ysd) =  .28643391
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .09125967
+              e(ymean) =  .0901739
 
 . 
 . 
@@ -831,93 +937,84 @@ added scalars:
 . * we add these alongside the state&time fixed effect
 . //quietly ///
 . reghdfe ///
-> $DependVar /// 
-> $InterestVars ///
+> $DependVar $InterestVars ///
 > $ControlContin ///
-> i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
-> /// $ControlProf $ControlCovid
+> i.$ConntrolCatJob i.$ControlCatWealth i.$ControlCatFam ///
 > [aweight=hh_weight] ///
 > ,absorb(us_state#hrmonth naic_id#hrmonth) ///
 > vce(cluster $Cluster)
+(dropped 1 singleton observations)
 (MWFE estimator converged in 5 iterations)
 
-HDFE Linear regression                            Number of obs   =     44,970
-Absorbing 2 HDFE groups                           F(  38,     39) =   24537.71
+HDFE Linear regression                            Number of obs   =     45,116
+Absorbing 2 HDFE groups                           F(  33,     39) =   12716.28
 Statistics robust to heteroskedasticity           Prob > F        =     0.0000
-                                                  R-squared       =     0.1279
-                                                  Adj R-squared   =     0.1219
-                                                  Within R-sq.    =     0.0337
-Number of clusters (naic_id) =         40         Root MSE        =     0.2699
+                                                  R-squared       =     0.1286
+                                                  Adj R-squared   =     0.1227
+                                                  Within R-sq.    =     0.0318
+Number of clusters (naic_id) =         40         Root MSE        =     0.2683
 
-                                 (Std. err. adjusted for 40 clusters in naic_id)
---------------------------------------------------------------------------------
-               |               Robust
-     is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
----------------+----------------------------------------------------------------
-     is_female |   .0167048   .0023459     7.12   0.000     .0119597    .0214499
-        is_poc |   .0115092   .0027787     4.14   0.000     .0058887    .0171297
-      is_asian |   .0181435   .0034881     5.20   0.000     .0110882    .0251988
-       is_hisp |  -.0303809   .0323404    -0.94   0.353    -.0957956    .0350338
-     is_native |   .0266207   .0097868     2.72   0.010     .0068251    .0464163
-           age |  -.0030585   .0006436    -4.75   0.000    -.0043604   -.0017566
-          age2 |   .0000336   6.76e-06     4.97   0.000     .0000199    .0000473
-               |
-     hh_income |
-5,000 TO 7,..  |  -.0508984   .0214543    -2.37   0.023    -.0942939    -.007503
-7,500 TO 9,..  |   .0362028   .0295897     1.22   0.228     -.023648    .0960537
-10,000 TO 1..  |  -.0102876   .0234018    -0.44   0.663    -.0576223    .0370471
-12,500 TO 1..  |    -.05969   .0209299    -2.85   0.007    -.1020246   -.0173553
-15,000 TO 1..  |  -.0362741   .0211532    -1.71   0.094    -.0790605    .0065124
-20,000 TO 2..  |  -.0442654   .0195884    -2.26   0.029    -.0838868   -.0046441
-25,000 TO 2..  |  -.0689427   .0207178    -3.33   0.002    -.1108483    -.027037
-30,000 TO 3..  |  -.0587219    .023867    -2.46   0.018    -.1069975   -.0104463
-35,000 TO 3..  |  -.0782844   .0185077    -4.23   0.000    -.1157198    -.040849
-40,000 TO 4..  |  -.0775343   .0191193    -4.06   0.000    -.1162067   -.0388618
-50,000 TO 5..  |  -.0880331   .0183423    -4.80   0.000    -.1251339   -.0509324
-60,000 TO 7..  |  -.1013291   .0199816    -5.07   0.000    -.1417458   -.0609125
-75,000 TO 9..  |  -.1060463   .0192763    -5.50   0.000    -.1450362   -.0670564
-100,000 TO ..  |    -.12034   .0191731    -6.28   0.000    -.1591212   -.0815587
-150,000 OR ..  |  -.1228368   .0191072    -6.43   0.000    -.1614848   -.0841889
-               |
-    level_educ |
-HIGH SCHOO..)  |  -.0016502    .007271    -0.23   0.822    -.0163572    .0130568
-SOME COLLEG..  |   -.000498   .0068225    -0.07   0.942    -.0142979    .0133018
-ASSOCIATE D..  |  -.0044331   .0068768    -0.64   0.523    -.0183428    .0094766
-ASSOCIATE D..  |    -.01232   .0074283    -1.66   0.105    -.0273452    .0027052
-BACHELOR'S..)  |  -.0340742   .0081136    -4.20   0.000    -.0504856   -.0176628
-MASTER'S D..)  |  -.0434052   .0088046    -4.93   0.000    -.0612142   -.0255962
-PROFESSION..)  |  -.0417078   .0088332    -4.72   0.000    -.0595746   -.0238409
-DOCTORATE ..)  |  -.0683651   .0090365    -7.57   0.000    -.0866432    -.050087
-               |
-       marista |
-MARRIED - S..  |   .0118943   .0086016     1.38   0.175    -.0055041    .0292926
-      WIDOWED  |  -.0104832   .0051296    -2.04   0.048    -.0208589   -.0001076
-     DIVORCED  |  -.0089758    .004133    -2.17   0.036    -.0173356    -.000616
-    SEPARATED  |   .0160781   .0076577     2.10   0.042      .000589    .0315672
-NEVER MARRIED  |   .0053672   .0019135     2.80   0.008     .0014968    .0092376
-               |
- owns_business |
-           NO  |   .0275609   .0060566     4.55   0.000     .0153102    .0398115
-               |
- contract_type |
-PART TIME L..  |   .0302503   .0095968     3.15   0.003      .010839    .0496617
-               |
-   is_more1job |
-           NO  |    .066652   .0057814    11.53   0.000     .0549579    .0783461
-         _cons |   .1614366   .0239881     6.73   0.000     .1129161    .2099571
---------------------------------------------------------------------------------
+                                                                        (Std. err. adjusted for 40 clusters in naic_id)
+-----------------------------------------------------------------------------------------------------------------------
+                                                      |               Robust
+                                            is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------------------------------------------+----------------------------------------------------------------
+                                            is_female |   .0163531   .0016304    10.03   0.000     .0130553    .0196509
+                                               is_poc |   .0138048    .003936     3.51   0.001     .0058436    .0217661
+                                             is_asian |   .0156887     .00343     4.57   0.000     .0087509    .0226266
+                                              is_hisp |  -.0490857    .036939    -1.33   0.192    -.1238019    .0256305
+                                            is_native |   .0070489   .0107616     0.66   0.516    -.0147185    .0288163
+                                                  age |  -.0026737   .0005662    -4.72   0.000     -.003819   -.0015283
+                                                 age2 |   .0000291   5.89e-06     4.95   0.000     .0000172     .000041
+                                                      |
+                                           level_educ |
+             high school grad-diploma or equiv (ged)  |   -.005952   .0079187    -0.75   0.457    -.0219691    .0100651
+                          some college but no degree  |   .0024233   .0082062     0.30   0.769    -.0141753    .0190218
+            associate degree-occupational/vocational  |  -.0193297   .0064391    -3.00   0.005     -.032354   -.0063054
+                   associate degree-academic program  |  -.0110425   .0093113    -1.19   0.243    -.0298764    .0077914
+                  bachelor's degree (ex: ba, ab, bs)  |  -.0303647   .0085086    -3.57   0.001    -.0475749   -.0131545
+        master's degree (ex: ma, ms, meng, med, msw)  |  -.0459803    .008572    -5.36   0.000    -.0633187   -.0286418
+          professional school deg (ex: md, dds, dvm)  |  -.0342157   .0086427    -3.96   0.000    -.0516972   -.0167342
+                     doctorate degree (ex: phd, edd)  |  -.0634392   .0083191    -7.63   0.000    -.0802662   -.0466121
+                                                      |
+                                        contract_type |   .0279755   .0114303     2.45   0.019     .0048556    .0510954
+                                          is_more1job |   .0697781   .0081563     8.56   0.000     .0532803    .0862758
+                                                      |
+                                         housing_kind |
+               hu in nontransient hotel, motel, etc.  |   .0012787   .0602951     0.02   0.983    -.1206797    .1232371
+              hu permanent in transient hotel, motel  |  -.0664289   .0949057    -0.70   0.488    -.2583939    .1255361
+                                 hu in rooming house  |   .2090402   .0993747     2.10   0.042     .0080359    .4100444
+        mobile home or trailer w/no perm. room added  |  -.0238798   .0053231    -4.49   0.000    -.0346468   -.0131128
+mobile home or trailer w/1 or more perm. rooms added  |  -.0044918   .0141216    -0.32   0.752    -.0330554    .0240718
+                              hu not specified above  |  -.2110724   .0885413    -2.38   0.022    -.3901642   -.0319807
+                   unoccupied tent site or trlr site  |  -.1238931   .0076525   -16.19   0.000    -.1393718   -.1084144
+                      other unit not specified above  |  -.0963034   .0070267   -13.71   0.000    -.1105163   -.0820905
+                                                      |
+                                            hh_income |  -.0085156   .0002513   -33.88   0.000    -.0090239   -.0080073
+                                        owns_business |   .0256833   .0059598     4.31   0.000     .0136284    .0377382
+                                                      |
+                                              marista |
+                             married - spouse absent  |   .0081783   .0080795     1.01   0.318    -.0081641    .0245206
+                                             widowed  |  -.0222064   .0036781    -6.04   0.000     -.029646   -.0147668
+                                            divorced  |  -.0088289   .0029657    -2.98   0.005    -.0148276   -.0028302
+                                           separated  |  -.0055674    .009058    -0.61   0.542    -.0238888     .012754
+                                       never married  |   .0060778   .0031445     1.93   0.061    -.0002825    .0124381
+                                                      |
+                                             is_citiz |   .0056736   .0066724     0.85   0.400    -.0078226    .0191699
+                                                _cons |   .0415717    .025552     1.63   0.112    -.0101121    .0932556
+-----------------------------------------------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
 ------------------------------------------------------------+
         Absorbed FE | Categories  - Redundant  = Num. Coefs |
 --------------------+---------------------------------------|
    us_state#hrmonth |       153           0         153     |
-    naic_id#hrmonth |       119         119           0    *|
+    naic_id#hrmonth |       118         118           0    *|
 ------------------------------------------------------------+
 * = FE nested within cluster; treated as redundant for DoF computation
 
 . 
-. eststo M7_0
+. eststo M7
 
 . quietly estadd local FE_S "No", replace
 
@@ -929,14 +1026,138 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "Yes", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28798123
+                e(ysd) =  .286437
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .09125967
+              e(ymean) =  .09017606
+
+. 
+. esttab M7
+
+----------------------------
+                      (1)   
+                is_layoff   
+----------------------------
+is_female          0.0164***
+                  (10.03)   
+
+is_poc             0.0138** 
+                   (3.51)   
+
+is_asian           0.0157***
+                   (4.57)   
+
+is_hisp           -0.0491   
+                  (-1.33)   
+
+is_native         0.00705   
+                   (0.66)   
+
+age              -0.00267***
+                  (-4.72)   
+
+age2            0.0000291***
+                   (4.95)   
+
+38.level_e~c            0   
+                      (.)   
+
+39.level_e~c     -0.00595   
+                  (-0.75)   
+
+40.level_e~c      0.00242   
+                   (0.30)   
+
+41.level_e~c      -0.0193** 
+                  (-3.00)   
+
+42.level_e~c      -0.0110   
+                  (-1.19)   
+
+43.level_e~c      -0.0304***
+                  (-3.57)   
+
+44.level_e~c      -0.0460***
+                  (-5.36)   
+
+45.level_e~c      -0.0342***
+                  (-3.96)   
+
+46.level_e~c      -0.0634***
+                  (-7.63)   
+
+contract_t~e       0.0280*  
+                   (2.45)   
+
+is_more1job        0.0698***
+                   (8.56)   
+
+1.housing_~d            0   
+                      (.)   
+
+2.housing_~d      0.00128   
+                   (0.02)   
+
+3.housing_~d      -0.0664   
+                  (-0.70)   
+
+4.housing_~d        0.209*  
+                   (2.10)   
+
+5.housing_~d      -0.0239***
+                  (-4.49)   
+
+6.housing_~d     -0.00449   
+                  (-0.32)   
+
+7.housing_~d       -0.211*  
+                  (-2.38)   
+
+10.housing~d       -0.124***
+                 (-16.19)   
+
+12.housing~d      -0.0963***
+                 (-13.71)   
+
+hh_income        -0.00852***
+                 (-33.88)   
+
+owns_busin~s       0.0257***
+                   (4.31)   
+
+1.marista               0   
+                      (.)   
+
+2.marista         0.00818   
+                   (1.01)   
+
+3.marista         -0.0222***
+                  (-6.04)   
+
+4.marista        -0.00883** 
+                  (-2.98)   
+
+5.marista        -0.00557   
+                  (-0.61)   
+
+6.marista         0.00608   
+                   (1.93)   
+
+is_citiz          0.00567   
+                   (0.85)   
+
+_cons              0.0416   
+                   (1.63)   
+----------------------------
+N                   45116   
+----------------------------
+t statistics in parentheses
+* p<0.05, ** p<0.01, *** p<0.001
 
 . 
 . /*##########################################
@@ -945,24 +1166,26 @@ added scalars:
 . preserve
 
 . drop if county_code==.
-(26,730 observations deleted)
+(26,729 observations deleted)
 
 . 
 . * get this to table - different percentages
-. tabulate race_cat is_layoff, row nofreq chi2
+. asdoc tabulate race_cat is_layoff, row nofreq chi2 save(tables\Layoff_tab_county.doc)
+(File tables\Layoff_tab_county.doc already exists, option append was assumed)
 
            |       is_layoff
   race_cat |         0          1 |     Total
 -----------+----------------------+----------
      asian |     91.10       8.90 |    100.00 
-      hisp |     95.83       4.17 |    100.00 
-    native |     90.05       9.95 |    100.00 
-       poc |     88.51      11.49 |    100.00 
-     white |     91.11       8.89 |    100.00 
+      hisp |     91.30       8.70 |    100.00 
+    native |     89.86      10.14 |    100.00 
+       poc |     87.80      12.20 |    100.00 
+     white |     91.03       8.97 |    100.00 
 -----------+----------------------+----------
-     Total |     90.77       9.23 |    100.00 
+     Total |     90.61       9.39 |    100.00 
 
-          Pearson chi2(4) =  17.5324   Pr = 0.002
+          Pearson chi2(4) =  25.5150   Pr = 0.000
+Click to Open File:  tables\Layoff_tab_county.doc
 
 . 
 . // quietly ///
@@ -970,91 +1193,76 @@ added scalars:
 > $DependVar /// 
 > $InterestVars ///
 > $ControlContin ///
-> i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+> i.($ControlCatJob $ConntrolCatFam $ControlCatWealth ) ///
 > ,absorb(county_code#hrmonth naic_id#hrmonth) ///
 > vce(cluster $Cluster)
-(dropped 7 singleton observations)
+(dropped 10 singleton observations)
 (MWFE estimator converged in 6 iterations)
-warning: missing F statistic; dropped variables due to collinearity or too few cl
-> usters
 
-HDFE Linear regression                            Number of obs   =     18,311
-Absorbing 2 HDFE groups                           F(  38,     37) =          .
-Statistics robust to heteroskedasticity           Prob > F        =          .
-                                                  R-squared       =     0.1624
-                                                  Adj R-squared   =     0.1418
-                                                  Within R-sq.    =     0.0355
-Number of clusters (naic_id) =         38         Root MSE        =     0.2686
+HDFE Linear regression                            Number of obs   =     18,379
+Absorbing 2 HDFE groups                           F(  31,     38) =   20145.19
+Statistics robust to heteroskedasticity           Prob > F        =     0.0000
+                                                  R-squared       =     0.1532
+                                                  Adj R-squared   =     0.1328
+                                                  Within R-sq.    =     0.0255
+Number of clusters (naic_id) =         39         Root MSE        =     0.2717
 
-                                 (Std. err. adjusted for 38 clusters in naic_id)
---------------------------------------------------------------------------------
-               |               Robust
-     is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
----------------+----------------------------------------------------------------
-     is_female |   .0127887    .003329     3.84   0.000     .0060436    .0195338
-        is_poc |   .0092046   .0046093     2.00   0.053    -.0001347    .0185438
-      is_asian |   .0070153   .0024351     2.88   0.007     .0020813    .0119492
-       is_hisp |  -.0537828   .0313852    -1.71   0.095    -.1173752    .0098096
-     is_native |  -.0070488   .0133093    -0.53   0.600    -.0340161    .0199185
-           age |  -.0023877   .0011115    -2.15   0.038    -.0046399   -.0001355
-          age2 |   .0000291   .0000112     2.61   0.013     6.49e-06    .0000517
-               |
-     hh_income |
-5,000 TO 7,..  |  -.0079912   .0249649    -0.32   0.751    -.0585749    .0425925
-7,500 TO 9,..  |   .0823137   .0477694     1.72   0.093    -.0144764    .1791037
-10,000 TO 1..  |   .0232843   .0274953     0.85   0.403    -.0324265    .0789951
-12,500 TO 1..  |  -.0439661   .0354207    -1.24   0.222    -.1157354    .0278031
-15,000 TO 1..  |  -.0338249   .0228717    -1.48   0.148    -.0801674    .0125176
-20,000 TO 2..  |  -.0023065   .0182138    -0.13   0.900    -.0392111    .0345981
-25,000 TO 2..  |  -.0402215   .0222547    -1.81   0.079    -.0853138    .0048707
-30,000 TO 3..  |  -.0550524    .025579    -2.15   0.038    -.1068803   -.0032244
-35,000 TO 3..  |  -.0653244   .0204326    -3.20   0.003    -.1067247    -.023924
-40,000 TO 4..  |  -.0619884   .0186466    -3.32   0.002      -.09977   -.0242068
-50,000 TO 5..  |  -.0734532   .0184478    -3.98   0.000    -.1108319   -.0360744
-60,000 TO 7..  |  -.0855126   .0196175    -4.36   0.000    -.1252614   -.0457638
-75,000 TO 9..  |  -.0923599   .0193271    -4.78   0.000    -.1315203   -.0531994
-100,000 TO ..  |  -.1035982   .0184997    -5.60   0.000    -.1410821   -.0661143
-150,000 OR ..  |  -.1104679   .0189102    -5.84   0.000    -.1487837   -.0721522
-               |
-    level_educ |
-HIGH SCHOO..)  |   .0026454   .0091757     0.29   0.775    -.0159464    .0212371
-SOME COLLEG..  |  -.0059384   .0104161    -0.57   0.572    -.0270433    .0151666
-ASSOCIATE D..  |  -.0085303   .0115948    -0.74   0.467    -.0320237    .0149631
-ASSOCIATE D..  |   .0073488   .0156663     0.47   0.642    -.0243943    .0390918
-BACHELOR'S..)  |  -.0315368    .010127    -3.11   0.004    -.0520562   -.0110175
-MASTER'S D..)  |  -.0377127   .0106022    -3.56   0.001    -.0591948   -.0162306
-PROFESSION..)  |  -.0370709   .0093367    -3.97   0.000    -.0559888    -.018153
-DOCTORATE ..)  |  -.0606867   .0087191    -6.96   0.000    -.0783532   -.0430202
-               |
-       marista |
-MARRIED - S..  |   .0043645   .0161469     0.27   0.788    -.0283522    .0370813
-      WIDOWED  |   -.026027   .0068058    -3.82   0.000    -.0398168   -.0122372
-     DIVORCED  |  -.0111768    .003834    -2.92   0.006    -.0189452   -.0034084
-    SEPARATED  |  -.0002283    .007264    -0.03   0.975    -.0149465      .01449
-NEVER MARRIED  |   .0103427   .0041413     2.50   0.017     .0019516    .0187338
-               |
- owns_business |
-           NO  |   .0303389    .007846     3.87   0.000     .0144414    .0462364
-               |
- contract_type |
-PART TIME L..  |   .0383943   .0052974     7.25   0.000     .0276606    .0491279
-               |
-   is_more1job |
-           NO  |   .0641322   .0081518     7.87   0.000     .0476152    .0806492
-         _cons |   .1306124    .037155     3.52   0.001     .0553292    .2058957
---------------------------------------------------------------------------------
+                                                                        (Std. err. adjusted for 39 clusters in naic_id)
+-----------------------------------------------------------------------------------------------------------------------
+                                                      |               Robust
+                                            is_layoff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------------------------------------------+----------------------------------------------------------------
+                                            is_female |    .013429   .0019363     6.94   0.000     .0095092    .0173488
+                                               is_poc |   .0161291   .0055192     2.92   0.006      .004956    .0273022
+                                             is_asian |  -.0029157    .003913    -0.75   0.461    -.0108371    .0050057
+                                              is_hisp |  -.0457918   .0351821    -1.30   0.201    -.1170141    .0254306
+                                            is_native |  -.0144016   .0141106    -1.02   0.314    -.0429669    .0141637
+                                                  age |  -.0046089   .0008802    -5.24   0.000    -.0063908    -.002827
+                                                 age2 |   .0000474   9.52e-06     4.98   0.000     .0000282    .0000667
+                                                      |
+                                         housing_kind |
+               hu in nontransient hotel, motel, etc.  |   .0551977     .01152     4.79   0.000     .0318767    .0785187
+              hu permanent in transient hotel, motel  |   .1904925     .12344     1.54   0.131    -.0593987    .4403837
+                                 hu in rooming house  |   .1936881   .1553063     1.25   0.220    -.1207131    .5080893
+        mobile home or trailer w/no perm. room added  |   -.033713   .0123595    -2.73   0.010    -.0587335   -.0086925
+mobile home or trailer w/1 or more perm. rooms added  |  -.0119254   .0228099    -0.52   0.604    -.0581016    .0342509
+                              hu not specified above  |  -.6758008   .0237787   -28.42   0.000    -.7239383   -.6276633
+                   unoccupied tent site or trlr site  |  -.1401166   .0353469    -3.96   0.000    -.2116726   -.0685605
+                      other unit not specified above  |   -.041146    .008655    -4.75   0.000    -.0586671   -.0236248
+                                                      |
+                                            hh_income |
+                                   Income: 5 > < 7.5  |  -.0438127   .0337199    -1.30   0.202     -.112075    .0244497
+                                  Income: 7.5 > < 10  |   .0858259   .0161312     5.32   0.000       .05317    .1184818
+                                 Income: 10 > < 12.5  |    .005298   .0137908     0.38   0.703      -.02262     .033216
+                                 Income: 12.5 > < 15  |    -.06964   .0281404    -2.47   0.018    -.1266074   -.0126727
+                                   Income: 15 > < 20  |  -.0406632   .0248585    -1.64   0.110    -.0909866    .0096602
+                                   Income: 20 > < 25  |  -.0189842   .0323456    -0.59   0.561    -.0844645    .0464961
+                                   Income: 25 > < 30  |  -.0655504   .0163274    -4.01   0.000    -.0986035   -.0324973
+                                   Income: 30 > < 35  |  -.0609768   .0187101    -3.26   0.002    -.0988534   -.0231002
+                                   Income: 35 > < 40  |   -.082082   .0164015    -5.00   0.000     -.115285   -.0488789
+                                   Income: 40 > < 50  |  -.0770757   .0149951    -5.14   0.000    -.1074317   -.0467196
+                                   Income: 50 > < 60  |   -.084779   .0237296    -3.57   0.001    -.1328171   -.0367408
+                                   Income: 60 > < 75  |  -.1017434   .0149084    -6.82   0.000    -.1319238   -.0715629
+                                  Income: 75 > < 100  |  -.1115219   .0220108    -5.07   0.000    -.1560804   -.0669633
+                                 Income: 100 > < 150  |  -.1307138    .022496    -5.81   0.000    -.1762545   -.0851731
+                                       Income: 150 >  |  -.1394976   .0206536    -6.75   0.000    -.1813086   -.0976866
+                                                      |
+                                        owns_business |
+                               does not own business  |    .029955   .0079668     3.76   0.001     .0138271     .046083
+                                                _cons |   .2643915   .0331042     7.99   0.000     .1973755    .3314075
+-----------------------------------------------------------------------------------------------------------------------
 
 Absorbed degrees of freedom:
 ---------------------------------------------------------------+
            Absorbed FE | Categories  - Redundant  = Num. Coefs |
 -----------------------+---------------------------------------|
    county_code#hrmonth |       296           0         296     |
-       naic_id#hrmonth |       108         108           0    *|
+       naic_id#hrmonth |       106         106           0    *|
 ---------------------------------------------------------------+
 * = FE nested within cluster; treated as redundant for DoF computation
 
 . 
-. eststo M7_1
+. eststo M8
 
 . quietly estadd local FE_S "No", replace
 
@@ -1066,48 +1274,29 @@ Absorbed degrees of freedom:
 
 . quietly estadd local WEIG "No", replace
 
-. 
+. quietly estadd local CLU "Yes", replace
+
 . estadd ysumm, replace
 
 added scalars:
-                e(ysd) =  .28998653
+                e(ysd) =  .29171353
                e(ymax) =  1
                e(ymin) =  0
-              e(ymean) =  .09267653
+              e(ymean) =  .09391153
 
 . 
 . restore
 
 . 
-. * robert meeting
-. /*
-> - show what weights in table with footnoe
-> - run herteroskedacity on baseline reg
-> */
-. 
-. 
 . /*##########################################
 > Tables
 > ############################################*/
-. // * Prepare estimates for -estout-
-. //      estfe . model*, labels(turn "Turn FE" turn#trunk "Turn-Trunk FE")
-. //      return list
-. //
-. // * Run estout/esttab
-. //      esttab . model* , indicate("Length Controls=length" `r(indicate_fe)')
-. //              
-. // * Return stored estimates to their previous state
-. //      estfe . model*, restore
 . 
-. // #delimit ;
-. // esttab M1 M2 M3 M4 M5 M6 M7_0 using "tables\Regs_table.csv",
-. //      label se star(* 0.10 ** 0.05 *** 0.01)
-. //      s(feS feST feP  clPT clST N ymean,
-. //      label("State FE" "State Month FE" "Industry FE" "Industry Month FE"
-. //      "Analytical Weights" "Observations" "Mean of Dep. Variable"))
-. //      keep($InterestVars "hh_income");
-. // #delimit cr
-. 
+. esttab M* using tables\reg.rtf, replace label onecell compress nogaps nonumbers nodepvars staraux drop("38.level_educ" "1.marista" "1.housing_kind" "3.hrmonth" "1.contract_type"
+>  "1.is_more1job") s(FE_S FE_ST FE_I FE_IT WEIG CLU N ymean, label("State FE" "State Month FE" "Industry FE" "Industry Month FE" "Analytical Weights" "Industry Clustering" "Obser
+> vations" "Mean of Dep. Variable")) addnotes("* Sample weights are provided by CPS and indicate for how many household a surveyed individual is representative")
+(output written to tables\reg.rtf)
+
 . 
 . 
 . 
@@ -1117,4 +1306,3 @@ added scalars:
 . 
 end of do-file
 
-. exit, clear

@@ -1,0 +1,877 @@
+{\rtf1\ansi\deff0 {\fonttbl{\f0\fnil Garamond;}}
+{\info {\author .}{\company .}{\title .}}
+\deflang1033\plain\fs20
+{\footer\pard\qc\plain\f0\fs20\chpgn\par}
+{
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.52}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.48}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {86.36}\cell
+\cellx2928
+\fs20\pard\intbl\qr {13.64}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.38}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.62}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.13}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.87}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.35}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.65}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.85}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.15}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 26.11  Prob = 0.0000}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.44}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.56}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {95.45}\cell
+\cellx2928
+\fs20\pard\intbl\qr {4.55}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.00}\cell
+\cellx2928
+\fs20\pard\intbl\qr {10.00}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {87.97}\cell
+\cellx2928
+\fs20\pard\intbl\qr {12.03}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.84}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.16}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.43}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.57}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 19.76  Prob = 0.0006}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.66}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.34}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {96.00}\cell
+\cellx2928
+\fs20\pard\intbl\qr {4.00}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.84}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.16}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.33}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.67}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.02}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.98}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.63}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.37}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 18.88  Prob = 0.0008}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.87}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.13}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {92.31}\cell
+\cellx2928
+\fs20\pard\intbl\qr {7.69}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.38}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.62}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.11}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.89}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.08}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.92}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.68}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.32}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 21.39  Prob = 0.0003}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {91.13}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {8.87}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {92.00}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.00}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.14}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.86}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.31}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.69}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.97}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.03}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.64}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.36}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 17.57  Prob = 0.0015}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {91.28}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {8.72}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.67}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.33}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.38}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.62}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {87.78}\cell
+\cellx2928
+\fs20\pard\intbl\qr {12.22}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.07}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.93}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.66}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.34}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 26.62  Prob = 0.0000}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.42}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.58}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {92.00}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.00}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {90.14}\cell
+\cellx2928
+\fs20\pard\intbl\qr {9.86}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.92}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.08}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.15}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.85}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.79}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.21}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 12.43  Prob = 0.0144}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {91.38}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {8.62}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {86.96}\cell
+\cellx2928
+\fs20\pard\intbl\qr {13.04}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {89.62}\cell
+\cellx2928
+\fs20\pard\intbl\qr {10.38}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {88.51}\cell
+\cellx2928
+\fs20\pard\intbl\qr {11.49}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.03}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.97}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.72}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.28}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 16.72  Prob = 0.0022}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {91.22}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {8.78}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {92.31}\cell
+\cellx2928
+\fs20\pard\intbl\qr {7.69}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.47}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.53}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {89.11}\cell
+\cellx2928
+\fs20\pard\intbl\qr {10.89}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.03}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.97}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.81}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.19}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 9.51  Prob = 0.0495}\cell
+\row}
+
+
+{\b\qc\line Tabulation of race_cat is_layoff  }{\par}
+{\trowd\trgaph108\trleft-108
+\clvmgf \clvertalb \clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {race_cat}\cell
+\clmgf \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qc {is_layoff}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {}\cell
+\clmrg \clbrdrt\brdrw10\brdrs \clbrdrb\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clvmrg  \clvertalb \clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {}\cell
+\cellx1952
+\fs20\pard\intbl\qr {0}\cell
+\cellx2928
+\fs20\pard\intbl\qr {1}\cell
+\cellx3904
+\fs20\pard\intbl\qr {Total}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw25\brdrs\cellx976
+\fs20\pard\intbl\ql {asian}\cell
+\clbrdrt\brdrw25\brdrs\cellx1952
+\fs20\pard\intbl\qr {91.10}\cell
+\clbrdrt\brdrw25\brdrs\cellx2928
+\fs20\pard\intbl\qr {8.90}\cell
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {hisp}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.30}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.70}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {native}\cell
+\cellx1952
+\fs20\pard\intbl\qr {89.86}\cell
+\cellx2928
+\fs20\pard\intbl\qr {10.14}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {poc}\cell
+\cellx1952
+\fs20\pard\intbl\qr {87.80}\cell
+\cellx2928
+\fs20\pard\intbl\qr {12.20}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \cellx976
+\fs20\pard\intbl\ql {white}\cell
+\cellx1952
+\fs20\pard\intbl\qr {91.03}\cell
+\cellx2928
+\fs20\pard\intbl\qr {8.97}\cell
+\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrr\brdrw10\brdrs \clbrdrt\brdrw10\brdrs\cellx976
+\fs20\pard\intbl\ql {Total}\cell
+\clbrdrt\brdrw10\brdrs\cellx1952
+\fs20\pard\intbl\qr {90.61}\cell
+\clbrdrt\brdrw10\brdrs\cellx2928
+\fs20\pard\intbl\qr {9.39}\cell
+\clbrdrt\brdrw10\brdrs\cellx3904
+\fs20\pard\intbl\qr {100.00}\cell
+\row}
+{\trowd\trgaph108\trleft-108
+\clbrdrt\brdrw25\brdrs\cellx3904
+\fs20\pard\intbl\ql {Pearson Chi2 = 25.51  Prob = 0.0000}\cell
+\row}
+
+
+\writepositionforappend
+}}

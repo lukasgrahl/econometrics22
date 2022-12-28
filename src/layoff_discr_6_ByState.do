@@ -20,7 +20,7 @@ global ControlContin "age age2"
 global InterestVars "is_female is_poc is_asian is_hisp is_native"
 global DependVar "is_layoff"
 global PThresh 0.1
-
+global Cluster " naic_id "
 
 * excludig consecutive observation of households
 sort hh_id
@@ -46,9 +46,11 @@ local Enum 1
 foreach x of local USStates{
 	display "`x'"
 	
+	clear mata
+	
 	preserve
 	quietly keep if us_state_str=="`x'"
-		
+	
 	* fe regression 
 	quietly ///
 	reghdfe ///
@@ -57,19 +59,19 @@ foreach x of local USStates{
 	$ControlContin ///
 	i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
 	,absorb(naic_id#hrmonth) ///
-
-// 	[aweight=hh_weight] ///
+	vce(cluster $Cluster)
+	
 	
 	* add table specifications
 	eststo `x'
 	quietly estadd local State `x', replace
 	
 	*store coefficients
-	local t_f = _b[is_female]/_se[is_female]
-	local t_p = _b[is_poc]/_se[is_poc]
-	local t_a = _b[is_asian]/_se[is_asian]
-	local t_n = _b[is_native]/_se[is_native]
-	local t_h = _b[is_hisp]/_se[is_hisp]
+	local t_f _b[is_female]/_se[is_female]
+	local t_p _b[is_poc]/_se[is_poc] 
+	local t_a _b[is_asian]/_se[is_asian]
+	local t_n _b[is_native]/_se[is_native]
+	local t_h _b[is_hisp]/_se[is_hisp] 
 
 	* get p values
 	local p_f = 2*ttail(e(df_r),abs(`t_f'))
@@ -94,7 +96,7 @@ Analyse results
 ############################################*/
 
 use "data\cps_bystate_prof_fe.dta", clear
-
+help(graph bar)
 * label state data
 label define usstatestr 1 "AK" 2 "AL" 3 "AR" 4 "AZ" 5 "CA" 6 "CO" 7 "CT" 8 "DC" 9 "DE" 10 "FL" 11 "GA" 12 "HI" 13 "IA" 14 "ID" 15 "IL" 16 "IN" 17 "KS" 18 "KY" 19 "LA" 20 "MA" 21 "MD" 22 "ME" 23 "MI" 24 "MN" 25 "MO" 26 "MS" 27 "MT" 28 "NC" 29 "ND" 30 "NE" 31 "NH" 32 "NJ" 33 "NM" 34 "NV" 35 "NY" 36 "OH" 37 "OK" 38 "OR" 39 "PA" 40 "RI" 41 "SC" 42 "SD" 43 "TN" 44 "TX" 45 "UT" 46 "VA" 47 "VT" 48 "WA" 49 "WI" 50 "WV" 51"WY"
 label value state usstatestr
@@ -112,48 +114,3 @@ graph bar coef_female_sig coef_poc_sig coef_asian_sig coef_native_sig coef_hisp_
 graph export "tables\by_state_coeff.png", replace
  //, label(labsize(vsmall)))
 restore
-
-exit
-/*##########################################
-Tables
-############################################*/
-exit
-#delimit ;
-esttab AK AL AR AZ CA IA ID IL IN using "tables\State_table1.csv",
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	s(State N ymean, 
-	label("State" "Observations" "Mean of Dep. Variable"))
-	keep($InterestVars);
-#delimit cr
-
-#delimit ;
-esttab MS MT NC ND NE NH NJ NM NV using "tables\State_table2.csv",
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	s(State N ymean, 
-	label("State" "Observations" "Mean of Dep. Variable"))
-	keep($InterestVars);
-#delimit cr
-
-#delimit ;
-esttab KS KY LA MA MD ME MI MN MO using "tables\State_table3.csv",
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	s(State N ymean, 
-	label("State" "Observations" "Mean of Dep. Variable"))
-	keep($InterestVars);
-#delimit cr
-
-#delimit ;
-esttab NY OH OK OR PA RI SC SD TN using "tables\State_table4.csv",
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	s(State N ymean, 
-	label("State" "Observations" "Mean of Dep. Variable"))
-	keep($InterestVars);
-#delimit cr
-
-#delimit ;
-esttab TX UT VA VT WA WI WV WY using "tables\State_table5.csv",
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	s(State N ymean, 
-	label("State" "Observations" "Mean of Dep. Variable"))
-	keep($InterestVars);
-#delimit cr
