@@ -19,7 +19,7 @@ global ConntrolCatJob "contract_type owns_business is_more1job"
 global ControlContin "age age2"
 global InterestVars "is_female is_poc is_asian is_hisp is_native"
 global DependVar "is_layoff"
-global PThresh 0.1
+global PThresh 0.05
 global Cluster " naic_id "
 
 * excludig consecutive observation of households
@@ -58,6 +58,7 @@ foreach x of local USStates{
 	$InterestVars ///
 	$ControlContin ///
 	i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+	$ControlCovid ///
 	,absorb(naic_id#hrmonth) ///
 	vce(cluster $Cluster)
 	
@@ -96,7 +97,7 @@ Analyse results
 ############################################*/
 
 use "data\cps_bystate_prof_fe.dta", clear
-help(graph bar)
+
 * label state data
 label define usstatestr 1 "AK" 2 "AL" 3 "AR" 4 "AZ" 5 "CA" 6 "CO" 7 "CT" 8 "DC" 9 "DE" 10 "FL" 11 "GA" 12 "HI" 13 "IA" 14 "ID" 15 "IL" 16 "IN" 17 "KS" 18 "KY" 19 "LA" 20 "MA" 21 "MD" 22 "ME" 23 "MI" 24 "MN" 25 "MO" 26 "MS" 27 "MT" 28 "NC" 29 "ND" 30 "NE" 31 "NH" 32 "NJ" 33 "NM" 34 "NV" 35 "NY" 36 "OH" 37 "OK" 38 "OR" 39 "PA" 40 "RI" 41 "SC" 42 "SD" 43 "TN" 44 "TX" 45 "UT" 46 "VA" 47 "VT" 48 "WA" 49 "WI" 50 "WV" 51"WY"
 label value state usstatestr

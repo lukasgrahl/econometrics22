@@ -1,9 +1,8 @@
----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_6_
-> ByState.log
+       log:  C:\Users\LukasGrahl\Documents\GIT\econometrics22\log\layoff_discr_6_ByState.log
   log type:  text
- opened on:  17 Dec 2022, 15:05:00
+ opened on:  28 Dec 2022, 21:41:48
 
 . use "data\layoff_discr\cps_main_prepro.dta", clear
 
@@ -27,7 +26,7 @@
 
 . global DependVar "is_layoff"
 
-. global PThresh 0.1
+. global PThresh 0.05
 
 . global Cluster " naic_id "
 
@@ -53,15 +52,12 @@
 . tempname results
 
 . postfile `results' ///
-> state coef_female coef_poc coef_asian coef_native coef_hisp p_female p_poc p_as
-> ian p_native p_hisp ///
+> state coef_female coef_poc coef_asian coef_native coef_hisp p_female p_poc p_asian p_native p_hisp ///
 > using "data\cps_bystate_prof_fe.dta", replace
 
 . 
-. local USStates `" "AK" "AL" "AR" "AZ" "CA" "CO" "CT" "DC" "DE" "FL" "GA" "HI" "
-> IA" "ID" "IL" "IN" "KS" "KY" "LA" "MA" "MD" "ME" "MI" "MN" "MO" "MS" "MT" "NC" 
-> "ND" "NE" "NH" "NJ" "NM" "NV" "NY" "OH" "OK" "OR" "PA" "RI" "SC" "SD" "TN" "TX"
->  "UT" "VA" "VT" "WA" "WI" "WV" "WY" "'
+. local USStates `" "AK" "AL" "AR" "AZ" "CA" "CO" "CT" "DC" "DE" "FL" "GA" "HI" "IA" "ID" "IL" "IN" "KS" "KY" "LA" "MA" "MD" "ME" "MI" "MN" "MO" "MS" "MT" "NC" "ND" "NE" "NH" "NJ"
+>  "NM" "NV" "NY" "OH" "OK" "OR" "PA" "RI" "SC" "SD" "TN" "TX" "UT" "VA" "VT" "WA" "WI" "WV" "WY" "'
 
 . local Enum 1
 
@@ -80,6 +76,7 @@
 >         $InterestVars ///
 >         $ControlContin ///
 >         i.($ControlCatEduc $ControlCatFam $ConntrolCatJob) ///
+>         $ControlCovid ///
 >         ,absorb(naic_id#hrmonth) ///
 >         vce(cluster $Cluster)
   7.         
@@ -104,8 +101,7 @@
  19.         
 .         post `results' ///
 >         (`Enum') ///
->         (_b[is_female]) (_b[is_poc]) (_b[is_asian]) (_b[is_native]) (_b[is_hisp
-> ]) /// 
+>         (_b[is_female]) (_b[is_poc]) (_b[is_asian]) (_b[is_native]) (_b[is_hisp]) /// 
 >         (`p_f') (`p_p') (`p_a') (`p_n') (`p_h')
  20.         
 .         * restore and re-initiate loop
@@ -175,12 +171,9 @@ WY
 
 . 
 . * label state data
-. label define usstatestr 1 "AK" 2 "AL" 3 "AR" 4 "AZ" 5 "CA" 6 "CO" 7 "CT" 8 "DC"
->  9 "DE" 10 "FL" 11 "GA" 12 "HI" 13 "IA" 14 "ID" 15 "IL" 16 "IN" 17 "KS" 18 "KY"
->  19 "LA" 20 "MA" 21 "MD" 22 "ME" 23 "MI" 24 "MN" 25 "MO" 26 "MS" 27 "MT" 28 "NC
-> " 29 "ND" 30 "NE" 31 "NH" 32 "NJ" 33 "NM" 34 "NV" 35 "NY" 36 "OH" 37 "OK" 38 "O
-> R" 39 "PA" 40 "RI" 41 "SC" 42 "SD" 43 "TN" 44 "TX" 45 "UT" 46 "VA" 47 "VT" 48 "
-> WA" 49 "WI" 50 "WV" 51"WY"
+. label define usstatestr 1 "AK" 2 "AL" 3 "AR" 4 "AZ" 5 "CA" 6 "CO" 7 "CT" 8 "DC" 9 "DE" 10 "FL" 11 "GA" 12 "HI" 13 "IA" 14 "ID" 15 "IL" 16 "IN" 17 "KS" 18 "KY" 19 "LA" 20 "MA" 21
+>  "MD" 22 "ME" 23 "MI" 24 "MN" 25 "MO" 26 "MS" 27 "MT" 28 "NC" 29 "ND" 30 "NE" 31 "NH" 32 "NJ" 33 "NM" 34 "NV" 35 "NY" 36 "OH" 37 "OK" 38 "OR" 39 "PA" 40 "RI" 41 "SC" 42 "SD" 43 
+> "TN" 44 "TX" 45 "UT" 46 "VA" 47 "VT" 48 "WA" 49 "WI" 50 "WV" 51"WY"
 
 . label value state usstatestr
 
@@ -200,10 +193,9 @@ WY
 . preserve 
 
 . keep if coef_female_sig!=0 | coef_poc_sig!=0
-(19 observations deleted)
+(25 observations deleted)
 
-. graph bar coef_female_sig coef_poc_sig coef_asian_sig coef_native_sig coef_hisp
-> _sig, over(state) scale(*.5)
+. graph bar coef_female_sig coef_poc_sig coef_asian_sig coef_native_sig coef_hisp_sig, over(state) scale(*.5)
 
 . graph export "tables\by_state_coeff.png", replace
 file tables\by_state_coeff.png saved as PNG format
@@ -214,23 +206,4 @@ file tables\by_state_coeff.png saved as PNG format
 . 
 end of do-file
 
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD23dc_000000.tmp"
-
-. help(graph)
-
-. 
-end of do-file
-
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD23dc_000000.tmp"
-
-. help(graph bar)
-
-. 
-end of do-file
-
-. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD23dc_000000.tmp"
-
-. *Preamble
-. clear mata
-
-. capture log close
+. exit, clear

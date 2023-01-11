@@ -1306,3 +1306,9 @@ added scalars:
 . 
 end of do-file
 
+. do "C:\Users\LUKASG~1\AppData\Local\Temp\STD1e44_000000.tmp"
+
+. *Preamble
+. clear mata
+
+. capture log close
